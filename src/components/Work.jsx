@@ -710,27 +710,33 @@ export default function Work() {
   const [phase, setPhase]       = useState("idle");
   const [dealtCount, setDealtCount] = useState(0);
 
+  const ivRef = useRef(null);
+  const tRef = useRef(null);
+
   useEffect(() => {
     if (!isRevealed || phase !== "idle") return;
-    const t = setTimeout(() => {
+    tRef.current = setTimeout(() => {
       setPhase("stacking");
       let count = 0;
-      const iv = setInterval(() => {
+      ivRef.current = setInterval(() => {
         count++;
         setDealtCount(count);
         if (count >= projects.length) {
-          clearInterval(iv);
+          clearInterval(ivRef.current);
+          ivRef.current = null;
           setPhase("stacked");
-          setTimeout(() => {
+          tRef.current = setTimeout(() => {
             setPhase("spreading");
-            setTimeout(() => setPhase("spread"), 700);
+            tRef.current = setTimeout(() => setPhase("spread"), 700);
           }, 800);
         }
       }, 400);
-      return () => clearInterval(iv);
     }, 500);
-    return () => clearTimeout(t);
-  }, [isRevealed]);
+    return () => {
+      if (ivRef.current) clearInterval(ivRef.current);
+      if (tRef.current) clearTimeout(tRef.current);
+    };
+  }, [isRevealed, phase]);
 
   const isSpread    = phase === "spread";
   const isSpreading = phase === "spreading";
