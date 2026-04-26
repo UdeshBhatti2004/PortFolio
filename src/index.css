@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap');
 
 @import "tailwindcss";
 
@@ -12,6 +12,30 @@ body {
 
 .body-font {
   font-family: 'DM Sans', sans-serif;
+}
+
+* {
+  cursor: none;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-outfit: 'Outfit', sans-serif;
+  --font-bebas: 'Bebas Neue', sans-serif;
+
+  --animate-marquee: marquee 22s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+}
+
+body {
+  font-family: var(--font-outfit);
 }
 
 * {
