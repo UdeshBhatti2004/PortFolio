@@ -502,7 +502,7 @@ import {
   animate,
   AnimatePresence,
 } from "framer-motion";
-
+;
 /* ── Cursor spotlight ── */
 function SpotlightCard({ children, className = "" }) {
   const cardRef = useRef(null);
@@ -623,7 +623,7 @@ function ProjectRow({ project, i }) {
             <div className="overflow-hidden">
               <motion.h3
                 className="leading-none"
-                style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(32px, 5vw, 76px)", letterSpacing: "0.02em" }}
+                style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(32px, 5vw, 100px)", letterSpacing: "0.02em" }}
                 animate={{ x: hovered ? 6 : 0 }}
                 transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
               >
@@ -702,41 +702,41 @@ function ProjectRow({ project, i }) {
 }
 
 /* ══ MAIN ══ */
-export default function Work() {
+export default function Work({onComplete}) {
   const sectionRef = useRef(null);
-  const isRevealed = useInView(sectionRef, { once: true, amount: 0.08 });
+const isRevealed = useInView(sectionRef, { once: true, amount: 0.3 });
 
   // "idle" → "stacking" → "stacked" → "spreading" → "spread"
   const [phase, setPhase]       = useState("idle");
   const [dealtCount, setDealtCount] = useState(0);
 
-  const ivRef = useRef(null);
-  const tRef = useRef(null);
-
   useEffect(() => {
     if (!isRevealed || phase !== "idle") return;
-    tRef.current = setTimeout(() => {
+    const t = setTimeout(() => {
       setPhase("stacking");
       let count = 0;
-      ivRef.current = setInterval(() => {
+      const iv = setInterval(() => {
         count++;
         setDealtCount(count);
         if (count >= projects.length) {
-          clearInterval(ivRef.current);
-          ivRef.current = null;
+          clearInterval(iv);
           setPhase("stacked");
-          tRef.current = setTimeout(() => {
-            setPhase("spreading");
-            tRef.current = setTimeout(() => setPhase("spread"), 700);
-          }, 800);
+       setTimeout(() => {
+  setPhase("spreading");
+
+  setTimeout(() => {
+    setPhase("spread");
+
+    if (onComplete) onComplete(); 
+  }, 900);
+
+}, 700);
         }
       }, 400);
+      return () => clearInterval(iv);
     }, 500);
-    return () => {
-      if (ivRef.current) clearInterval(ivRef.current);
-      if (tRef.current) clearTimeout(tRef.current);
-    };
-  }, [isRevealed, phase]);
+    return () => clearTimeout(t);
+  }, [isRevealed,phase]);
 
   const isSpread    = phase === "spread";
   const isSpreading = phase === "spreading";
@@ -783,7 +783,7 @@ export default function Work() {
 
       {/* Header */}
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-10"
+        className="relative z-10 px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-10"
         initial={{ opacity: 0 }}
         animate={isRevealed ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.3 }}
@@ -835,7 +835,7 @@ export default function Work() {
       {/* ══════════════════════════════════
           STACK ANIMATION AREA
       ══════════════════════════════════ */}
-      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16 max-w-7xl mx-auto">
+      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16 w-full">
 
         {/* STACKING / SPREADING */}
         <AnimatePresence>
@@ -960,7 +960,7 @@ export default function Work() {
 
       {/* Footer */}
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 md:px-16 py-10"
+        className="relative z-10 w-full px-5 sm:px-10 md:px-16 py-10"
         animate={{ opacity: isSpread ? 1 : 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >

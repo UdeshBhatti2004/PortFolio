@@ -211,7 +211,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
       ════════════════════════════════════════ */}
       <motion.div
   style={{ y: contentY }}
-  className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 md:px-16 py-24 sm:py-32"
+  className="relative z-10 w-full px-5 sm:px-10 md:px-16 py-24 sm:py-32"
         initial={{ scale: 0.96, opacity: 0 }}
         animate={isRevealed ? { scale: 1, opacity: 1 } : { scale: 0.96, opacity: 0 }}
         transition={{ duration: 1.2, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
@@ -243,7 +243,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
               className="leading-none mb-8"
               style={{
                 fontFamily: "var(--font-bebas)",
-                fontSize: "clamp(52px, 9.5vw, 116px)",
+                fontSize: "clamp(52px, 9.5vw, 140px)",
                 letterSpacing: "0.02em",
               }}
             >
@@ -256,7 +256,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
 
             {/* Para 1 */}
             <FadeUp delay={0.32}>
-              <p className="mt-7 text-white/50 text-sm sm:text-[15px] leading-[1.9] max-w-[440px]">
+              <p className="mt-7 text-white/50 text-sm sm:text-[15px] 2xl:text-[20px] leading-[1.9] sm:max-w-[440px] 2xl:max-w-[600px]">
                 I'm{" "}
                 <span className="text-white/80 font-medium">Udesh Bhatti</span>
                 {" "}— a BCA graduate from Rajkot. I didn't wait for a syllabus
@@ -269,7 +269,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
 
             {/* Para 2 */}
             <FadeUp delay={0.40}>
-              <p className="mt-5 text-white/30 text-sm sm:text-[15px] leading-[1.9] max-w-[440px]">
+              <p className="mt-5 text-white/30 text-sm sm:text-[15px] 2xl:text-[20px] leading-[1.9] sm:max-w-[440px] 2xl:max-w-[600px]">
                 I obsess over the details others skip — the micro-interaction
                 that makes a UI feel alive, the API response time that nobody
                 notices until it's slow, the loading state that turns
@@ -318,7 +318,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
                     className="text-white leading-none tabular-nums"
                     style={{
                       fontFamily: "var(--font-bebas)",
-                      fontSize: "clamp(42px, 6vw, 72px)",
+                      fontSize: "clamp(42px, 6vw, 100px)",
                       letterSpacing: "0.01em",
                     }}
                   >
@@ -336,7 +336,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
             {/* ── Experience ── */}
             <div>
               <FadeUp delay={0.15}>
-                <p className="text-[10px] tracking-[0.4em] uppercase text-white/20 mb-5">
+                <p className="text-[10px] 2xl:text-[15px] tracking-[0.4em] uppercase text-white/20 mb-5">
                   Experience
                 </p>
               </FadeUp>
@@ -358,15 +358,15 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
                       />
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <p className="text-white/75 text-sm font-medium leading-snug">
+                          <p className="text-white/75 text-sm 2xl:text-2xl font-medium  leading-snug">
                             {exp.role}
                           </p>
-                          <p className="text-white/35 text-xs mt-0.5">{exp.company}</p>
-                          <p className="text-white/20 text-[10px] tracking-widest mt-1 uppercase">
+                          <p className="text-white/35 text-xs 2xl:text-xl mt-0.5">{exp.company}</p>
+                          <p className="text-white/20 text-[10px] 2xl:text-[15px]  tracking-widest mt-1 uppercase">
                             {exp.detail}
                           </p>
                         </div>
-                        <span className="text-[10px] tracking-[0.2em] text-white/20 whitespace-nowrap mt-0.5 flex-shrink-0">
+                        <span className="text-[10px] 2xl:text-[15px] tracking-[0.2em] text-white/20 whitespace-nowrap mt-0.5 flex-shrink-0">
                           {exp.period}
                         </span>
                       </div>
@@ -388,11 +388,11 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 0.55 }}
                   />
-                  <span className="text-white/20 text-[10px] tracking-[0.3em] uppercase whitespace-nowrap relative z-10">
+                  <span className="text-white/20 text-[10px] 2xl:text-[20px] tracking-[0.3em] uppercase whitespace-nowrap relative z-10">
                     Achievement
                   </span>
                   <span className="w-px h-3 bg-white/10 flex-shrink-0" />
-                  <span className="text-white/55 text-[11px] leading-snug relative z-10">
+                  <span className="text-white/55 text-[11px] 2xl:text-[18px] leading-snug relative z-10">
                     Runner-up — Ignite 2025 Hackathon
                     <span className="text-white/22"> · Charusat University, Anand</span>
                   </span>
@@ -411,7 +411,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
                   animate={tagsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                   transition={{ duration: 0.5, delay: i * 0.07, ease: [0.76, 0, 0.24, 1] }}
                   whileHover={{ borderColor: "rgba(255,255,255,0.28)", color: "rgba(255,255,255,0.65)" }}
-                  className="text-[10px] tracking-[0.3em] uppercase text-white/28 border border-white/[0.08] px-3 py-1.5 cursor-default transition-colors duration-300"
+                  className="text-[10px] 2xl:text-[15px] tracking-[0.3em] uppercase text-white/28 border border-white/[0.08] px-3 py-1.5 cursor-default transition-colors duration-300"
                 >
                   {tag}
                 </motion.span>
@@ -422,7 +422,6 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
         </div>
       </motion.div>
 
-      <div className="w-full h-px bg-white/[0.07]" />
     </section>
   );
 }

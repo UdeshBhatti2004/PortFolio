@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 function FadeUp({ children, delay = 0, className = "" }) {
@@ -79,13 +79,11 @@ const skillGroups = [
 ];
 
 function SkillChip({ skill, delay = 0 }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const handleClick = () => setIsExpanded(prev => !prev);
+  const [hovered, setHovered] = useState(false);
   return (
     <motion.div
-      onClick={handleClick}
-      onPointerEnter={() => setIsExpanded(true)}
-      onPointerLeave={() => setIsExpanded(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       initial={{ opacity: 0, y: 16, scale: 0.94 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -96,8 +94,8 @@ function SkillChip({ skill, delay = 0 }) {
       <motion.div
         className="flex flex-col border px-4 py-2.5 relative overflow-hidden"
         animate={{
-          borderColor: isExpanded ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.1)",
-          backgroundColor: isExpanded ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0)",
+          borderColor: hovered ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.1)",
+          backgroundColor: hovered ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0)",
         }}
         transition={{ duration: 0.22 }}
       >
@@ -105,8 +103,8 @@ function SkillChip({ skill, delay = 0 }) {
           <motion.div
             className="w-1 h-1 rounded-full flex-shrink-0"
             animate={{
-              scale: isExpanded ? 1.8 : 1,
-              backgroundColor: isExpanded ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.25)",
+              scale: hovered ? 1.8 : 1,
+              backgroundColor: hovered ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.25)",
             }}
             transition={{ duration: 0.22 }}
           />
@@ -115,7 +113,7 @@ function SkillChip({ skill, delay = 0 }) {
             style={{
               fontFamily: "var(--font-outfit)",
               fontWeight: 500,
-              color: isExpanded ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.55)",
+              color: hovered ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.55)",
             }}
           >
             {skill.name}
@@ -124,7 +122,7 @@ function SkillChip({ skill, delay = 0 }) {
 
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={isExpanded
+          animate={hovered
             ? { height: "auto", opacity: 1, marginTop: 6 }
             : { height: 0, opacity: 0, marginTop: 0 }}
           transition={{ duration: 0.25, ease: [0.76, 0, 0.24, 1] }}
@@ -141,7 +139,7 @@ function SkillChip({ skill, delay = 0 }) {
 
       <motion.div
         className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/50"
-        animate={{ opacity: isExpanded ? 1 : 0 }}
+        animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.2 }}
       />
     </motion.div>
@@ -150,53 +148,55 @@ function SkillChip({ skill, delay = 0 }) {
 
 function SkillGroup({ group, index }) {
   const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
-    <motion.div ref={ref} className="mt-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.76, 0, 0.24, 1] }}
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 36 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.85, delay: index * 0.08, ease: [0.76, 0, 0.24, 1] }}
+      className="py-8 sm:py-10 border-b border-white/[0.07]"
     >
-      <div className="flex items-center gap-3 mb-3">
-        <span className="text-[10px] tracking-[0.2em] text-white/40" style={{ fontFamily: "var(--font-outfit)" }}>
-          {group.code}
-        </span>
-        <span className="text-[13px] tracking-[0.15em] uppercase text-white/70" style={{ fontFamily: "var(--font-outfit)" }}>
-          {group.label}
-        </span>
-        <span className="text-[10px] tracking-[0.1em] text-white/20" style={{ fontFamily: "var(--font-outfit)" }}>
-          — {group.description}
-        </span>
-      </div>
-      <div className="flex flex-wrap gap-2.5">
-        {group.skills.map((skill, i) => (
-          <SkillChip key={skill.name} skill={skill} delay={i * 0.04} />
-        ))}
+      <div className="flex flex-col sm:flex-row sm:items-start gap-5 sm:gap-10 lg:gap-16">
+
+        {/* Label */}
+        <div className="flex sm:flex-col gap-3 sm:gap-2 items-center sm:items-start flex-shrink-0 sm:w-36 sm:pt-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] tracking-[0.45em] uppercase text-white/20"
+              style={{ fontFamily: "var(--font-outfit)" }}>
+              {group.code}
+            </span>
+            <span className="w-3 h-px bg-white/15" />
+          </div>
+          <span className="text-white/70 text-sm font-medium tracking-wide"
+            style={{ fontFamily: "var(--font-outfit)" }}>
+            {group.label}
+          </span>
+          <span className="hidden sm:block text-[10px] text-white/20 leading-relaxed mt-1"
+            style={{ fontFamily: "var(--font-outfit)" }}>
+            {group.description}
+          </span>
+        </div>
+
+        {/* Chips — wrap naturally */}
+        <div className="flex flex-wrap gap-2 sm:gap-2.5 flex-1">
+          {group.skills.map((skill, si) => (
+            <SkillChip
+              key={skill.name}
+              skill={skill}
+              delay={index * 0.06 + si * 0.05}
+            />
+          ))}
+        </div>
       </div>
     </motion.div>
   );
 }
 
-// Detect touch capability for adaptive hint
-function useIsTouch() {
-  const [isTouch, setIsTouch] = useState(false);
-  useEffect(() => {
-    const checkTouch = () => {
-      setIsTouch(window.matchMedia("(hover: none)").matches || "ontouchstart" in window);
-    };
-    checkTouch();
-    const mq = window.matchMedia("(hover: none)");
-    const handler = () => checkTouch();
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-  return isTouch;
-}
-
-function Skills() {
-  const isTouch = useIsTouch();
+export default function Skills() {
   const sectionRef = useRef(null);
-  const isRevealed = useInView(sectionRef, { once: true, amount: 0.08 });
+  const isRevealed = useInView(sectionRef, { once: true, amount: 0 });
   const totalSkills = skillGroups.reduce((a, g) => a + g.skills.length, 0);
 
   return (
@@ -206,20 +206,13 @@ function Skills() {
       className="relative w-full bg-[#080808] text-white overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
-      {/* Cinematic curtain */}
+      {/* Accent line reveal — no blocking curtain on Skills */}
       <motion.div
-        className="absolute inset-0 z-50 bg-[#080808] pointer-events-none"
-        initial={{ scaleY: 1 }}
-        animate={isRevealed ? { scaleY: 0 } : { scaleY: 1 }}
-        style={{ transformOrigin: "top" }}
-        transition={{ duration: 1.0, ease: [0.76, 0, 0.24, 1], delay: 0.05 }}
-      />
-      <motion.div
-        className="absolute top-0 left-0 right-0 z-[60] h-[2px] bg-white/30"
+        className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-white/25"
         initial={{ scaleX: 0 }}
         animate={isRevealed ? { scaleX: 1 } : { scaleX: 0 }}
         style={{ originX: 0 }}
-        transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+        transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
       />
 
       <div className="w-full h-px bg-white/[0.07]" />
@@ -228,7 +221,7 @@ function Skills() {
       <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none" aria-hidden="true">
         <span style={{
           fontFamily: "var(--font-bebas)",
-          fontSize: "clamp(100px, 22vw, 280px)",
+          fontSize: "clamp(100px, 22vw, 300px)",
           color: "rgba(255,255,255,0.018)",
           letterSpacing: "0.05em",
           lineHeight: 0.9,
@@ -251,7 +244,7 @@ function Skills() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <motion.div className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24" initial={{ opacity: 0, y: 24 }} animate={isRevealed ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}>
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-20">
@@ -273,7 +266,7 @@ function Skills() {
 
             <div style={{
               fontFamily: "var(--font-bebas)",
-              fontSize: "clamp(44px, 9vw, 110px)",
+              fontSize: "clamp(44px, 9vw, 150px)",
               letterSpacing: "0.02em",
               lineHeight: 0.9,
             }}>
@@ -303,12 +296,12 @@ function Skills() {
               <div key={s.label} className="flex flex-col gap-1">
                 <span style={{
                   fontFamily: "var(--font-bebas)",
-                  fontSize: "clamp(34px, 5vw, 56px)",
+                  fontSize: "clamp(34px, 5vw, 100px)",
                   letterSpacing: "0.02em",
                   lineHeight: 1,
                   color: "white",
                 }}>{s.val}</span>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-white/25">{s.label}</span>
+                <span className="text-[10px] 2xl:text-[15px] tracking-[0.3em] uppercase text-white/25">{s.label}</span>
               </div>
             ))}
           </motion.div>
@@ -318,15 +311,15 @@ function Skills() {
 
         {/* Hint */}
         <FadeUp delay={0.4}>
-          <p className="text-[10px] tracking-[0.35em] uppercase text-white/20 mt-5 mb-2">
-            ↳ {isTouch ? "tap" : "hover"} any skill to expand
+          <p className="text-[10px] 2xl:text-[15px] tracking-[0.35em] uppercase text-white/20 mt-5 mb-2">
+            ↳ hover any skill to expand
           </p>
         </FadeUp>
 
         {/* Groups */}
         <div className="mt-4">
           {skillGroups.map((group, i) => (
-            <SkillGroup key={group.id} group={group} index={i} />
+            <SkillGroup key={group.id}   group={group} index={i}  />
           ))}
         </div>
 
@@ -351,10 +344,9 @@ function Skills() {
           </div>
         </FadeUp>
 
-      </div>
+      </motion.div>
 
-      <div className="w-full h-px bg-white/[0.07]" />
+      
     </section>
   );
 }
-
