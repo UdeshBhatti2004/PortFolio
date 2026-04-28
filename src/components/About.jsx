@@ -125,7 +125,7 @@ const experience = [
 const stats = [
   { to: 2,  suffix: "",   label: "Internships" },
   { to: 4,  suffix: "+",  label: "Projects Shipped" },
-  { to: 1,  suffix: "st", label: "Hackathon Win" },
+  { to: 2,  suffix: "nd", label: "Hackathon Runner-up" },
 ];
 
 export default function About() {
@@ -142,12 +142,11 @@ export default function About() {
     offset: ["start end", "end start"],
   });
 const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
-const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative mt-[100vh]  z-20  w-full bg-[#080808] text-white min-h-[140vh]"
+      className="relative mt-0 sm:mt-[100vh] z-20 w-full bg-[#080808] text-white"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
       <motion.div
@@ -192,26 +191,12 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
         </span>
       </motion.div>
 
-      {/* ── Floating dots ── */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-white/[0.06]"
-            style={{ top: `${15 + i * 13}%`, right: `${6 + (i % 3) * 4}%` }}
-            animate={{ opacity: [0.06, 0.2, 0.06] }}
-            transition={{ duration: 3 + i * 0.6, repeat: Infinity, delay: i * 0.5 }}
-          />
-        ))}
-      </div>
-
       {/* ════════════════════════════════════════
           CONTENT — scales up from 96% as
           curtain lifts
       ════════════════════════════════════════ */}
       <motion.div
-  style={{ y: contentY }}
-  className="relative z-10 w-full px-5 sm:px-10 md:px-16 py-24 sm:py-32"
+  className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-12 sm:pb-16"
         initial={{ scale: 0.96, opacity: 0 }}
         animate={isRevealed ? { scale: 1, opacity: 1 } : { scale: 0.96, opacity: 0 }}
         transition={{ duration: 1.2, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
@@ -324,7 +309,7 @@ const contentY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
                   >
                     <Counter to={s.to} suffix={s.suffix} inView={isRevealed} />
                   </p>
-                  <p className="text-[10px] tracking-[0.32em] uppercase text-white/25 leading-snug">
+                  <p className="text-[10px] tracking-[0.1em] sm:tracking-[0.32em] uppercase text-white/25 leading-snug">
                     {s.label}
                   </p>
                 </motion.div>

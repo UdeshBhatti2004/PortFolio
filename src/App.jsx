@@ -6,6 +6,8 @@ import Marquee from './components/Marquee'
 import Work from './components/Work'
 import Skills from './components/Skills'
 import { useState } from 'react'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 function App() {
 const [skillsStart, setSkillsStart] = useState(false);  return (
@@ -15,6 +17,8 @@ const [skillsStart, setSkillsStart] = useState(false);  return (
        <About/>
        <Work onComplete={()=>setSkillsStart(true)}/>
        {skillsStart && <Skills startAnimation={true} />}
+       <Contact/>
+       <Footer/>
     </>
   )
 }

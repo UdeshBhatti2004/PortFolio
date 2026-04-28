@@ -3,8 +3,13 @@ import { useEffect, useRef } from "react";
 export default function CustomCursor() {
   const dot = useRef(null);
   const ring = useRef(null);
+  const canUseCustomCursor =
+    typeof window !== "undefined" &&
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   useEffect(() => {
+    if (!canUseCustomCursor) return;
+
     const move = (e) => {
       if (dot.current) {
         dot.current.style.left = e.clientX + "px";
@@ -21,7 +26,9 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
-  }, []);
+  }, [canUseCustomCursor]);
+
+  if (!canUseCustomCursor) return null;
 
   return (
     <>

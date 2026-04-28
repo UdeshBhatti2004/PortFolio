@@ -6,9 +6,9 @@ function FadeUp({ children, delay = 0, className = "" }) {
   const inView = useInView(ref, { once: true, amount: 0.1 });
   return (
     <motion.div ref={ref} className={className}
-      initial={{ y: 32, opacity: 0 }}
+      initial={{ y: 28, opacity: 0 }}
       animate={inView ? { y: 0, opacity: 1 } : {}}
-      transition={{ duration: 0.85, delay, ease: [0.76, 0, 0.24, 1] }}
+      transition={{ duration: 0.8, delay, ease: [0.76, 0, 0.24, 1] }}
     >{children}</motion.div>
   );
 }
@@ -17,7 +17,7 @@ function LineReveal({ delay = 0 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.1 });
   return (
-    <motion.div ref={ref} className="h-px bg-white/10 w-full"
+    <motion.div ref={ref} className="h-px bg-white/[0.07] w-full"
       initial={{ scaleX: 0 }} style={{ originX: 0 }}
       animate={inView ? { scaleX: 1 } : {}}
       transition={{ duration: 1.0, delay, ease: [0.76, 0, 0.24, 1] }}
@@ -27,10 +27,7 @@ function LineReveal({ delay = 0 }) {
 
 const skillGroups = [
   {
-    id: "frontend",
-    label: "Frontend",
-    code: "01",
-    description: "What the world sees",
+    id: "frontend", label: "Frontend", code: "01", description: "What the world sees",
     skills: [
       { name: "React JS",     note: "Hooks · Context · RTK Query" },
       { name: "JavaScript",   note: "ES6+ · Async · DOM" },
@@ -40,10 +37,7 @@ const skillGroups = [
     ],
   },
   {
-    id: "backend",
-    label: "Backend",
-    code: "02",
-    description: "What keeps it running",
+    id: "backend", label: "Backend", code: "02", description: "What keeps it running",
     skills: [
       { name: "Node.js",    note: "Server runtime" },
       { name: "Express.js", note: "REST APIs · Middleware" },
@@ -53,20 +47,14 @@ const skillGroups = [
     ],
   },
   {
-    id: "database",
-    label: "Database",
-    code: "03",
-    description: "Where data lives",
+    id: "database", label: "Database", code: "03", description: "Where data lives",
     skills: [
       { name: "MongoDB",  note: "NoSQL · Aggregations" },
       { name: "Mongoose", note: "Schema · Validation" },
     ],
   },
   {
-    id: "tools",
-    label: "Tools & APIs",
-    code: "04",
-    description: "The ecosystem",
+    id: "tools", label: "Tools & APIs", code: "04", description: "The ecosystem",
     skills: [
       { name: "Git",           note: "Version control" },
       { name: "GitHub",        note: "Repos · Collaboration" },
@@ -80,68 +68,89 @@ const skillGroups = [
 
 function SkillChip({ skill, delay = 0 }) {
   const [hovered, setHovered] = useState(false);
+
   return (
     <motion.div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      initial={{ opacity: 0, y: 16, scale: 0.94 }}
+      initial={{ opacity: 0, y: 12, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5, delay, ease: [0.76, 0, 0.24, 1] }}
+      transition={{ duration: 0.45, delay }}
       className="relative cursor-default"
       style={{ display: "inline-flex" }}
     >
+      {/* Accent Line */}
       <motion.div
-        className="flex flex-col border px-4 py-2.5 relative overflow-hidden"
+        className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/50"
         animate={{
-          borderColor: hovered ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.1)",
-          backgroundColor: hovered ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0)",
+          scaleY: hovered ? 1 : 0,
+          opacity: hovered ? 1 : 0,
         }}
-        transition={{ duration: 0.22 }}
+        style={{ originY: 0.5 }}
+        transition={{ duration: 0.2 }}
+      />
+
+      {/* Box */}
+      <motion.div
+        className="flex flex-col border px-4 py-1.5 relative overflow-hidden"
+        animate={{
+          borderColor: hovered
+            ? "rgba(255,255,255,0.28)"
+            : "rgba(255,255,255,0.1)",
+          backgroundColor: hovered
+            ? "rgba(255,255,255,0.04)"
+            : "rgba(0,0,0,0)",
+        }}
+        transition={{ duration: 0.2 }}
       >
+        {/* Top Row */}
         <div className="flex items-center gap-2.5">
           <motion.div
-            className="w-1 h-1 rounded-full flex-shrink-0"
+            className="w-1 h-1 rounded-full"
             animate={{
               scale: hovered ? 1.8 : 1,
-              backgroundColor: hovered ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.25)",
+              backgroundColor: hovered
+                ? "rgba(255,255,255,0.8)"
+                : "rgba(255,255,255,0.25)",
             }}
-            transition={{ duration: 0.22 }}
+            transition={{ duration: 0.2 }}
           />
+
           <span
-            className="text-[11px] sm:text-[12px] tracking-[0.18em] uppercase whitespace-nowrap transition-colors duration-200"
+            className="text-[11px] sm:text-[12px] 2xl:text-[15px] tracking-[0.18em] uppercase"
             style={{
               fontFamily: "var(--font-outfit)",
               fontWeight: 500,
-              color: hovered ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.55)",
+              color: hovered
+                ? "rgba(255,255,255,0.9)"
+                : "rgba(255,255,255,0.55)",
             }}
           >
             {skill.name}
           </span>
         </div>
 
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={hovered
-            ? { height: "auto", opacity: 1, marginTop: 6 }
-            : { height: 0, opacity: 0, marginTop: 0 }}
-          transition={{ duration: 0.25, ease: [0.76, 0, 0.24, 1] }}
-          className="overflow-hidden"
-        >
-          <span
-            className="text-[10px] text-white/30 tracking-wide whitespace-nowrap block"
-            style={{ fontFamily: "var(--font-outfit)" }}
-          >
-            {skill.note}
-          </span>
-        </motion.div>
-      </motion.div>
+        {/* EXPAND INSIDE */}
+<motion.div
+  initial={false}
+  animate={
+    hovered
+      ? { opacity: 1, y: 0, height: "auto", marginTop: 4 }
+      : { opacity: 0, y: -6, height: 0, marginTop: 0 }
+  }
+  transition={{ duration: 0.2 }}
+  className="overflow-hidden"
+>
 
-      <motion.div
-        className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/50"
-        animate={{ opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-      />
+  <span
+    className="text-[10px] 2xl:text-[13px] text-white/30 tracking-wide block"
+    style={{ fontFamily: "var(--font-outfit)" }}
+  >
+    {skill.note}
+  </span>
+</motion.div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -153,34 +162,25 @@ function SkillGroup({ group, index }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 36 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.85, delay: index * 0.08, ease: [0.76, 0, 0.24, 1] }}
-      className="py-8 sm:py-10 border-b border-white/[0.07]"
+      transition={{ duration: 0.8, delay: index * 0.08, ease: [0.76, 0, 0.24, 1] }}
+      className="py-7 sm:py-9 border-b border-white/[0.06]"
     >
-      <div className="flex flex-col sm:flex-row sm:items-start gap-5 sm:gap-10 lg:gap-16">
-
-        {/* Label */}
+      <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-10 lg:gap-16">
         <div className="flex sm:flex-col gap-3 sm:gap-2 items-center sm:items-start flex-shrink-0 sm:w-36 sm:pt-1">
           <div className="flex items-center gap-2">
-            <span className="text-[9px] tracking-[0.45em] uppercase text-white/20"
-              style={{ fontFamily: "var(--font-outfit)" }}>
-              {group.code}
-            </span>
-            <span className="w-3 h-px bg-white/15" />
+            <span className="text-[9px] 2xl:text-[12px] tracking-[0.45em] uppercase text-white/20"
+              style={{ fontFamily: "var(--font-outfit)" }}>{group.code}</span>
+            <span className="w-3 h-px bg-white/[0.14]" />
           </div>
-          <span className="text-white/70 text-sm font-medium tracking-wide"
-            style={{ fontFamily: "var(--font-outfit)" }}>
-            {group.label}
-          </span>
-          <span className="hidden sm:block text-[10px] text-white/20 leading-relaxed mt-1"
-            style={{ fontFamily: "var(--font-outfit)" }}>
-            {group.description}
-          </span>
+          <span className="text-white/65 text-sm 2xl:text-lg font-medium tracking-wide"
+            style={{ fontFamily: "var(--font-outfit)" }}>{group.label}</span>
+          <span className="hidden sm:block text-[10px] 2xl:text-[13px] text-white/20 leading-relaxed"
+            style={{ fontFamily: "var(--font-outfit)" }}>{group.description}</span>
         </div>
 
-        {/* Chips — wrap naturally */}
-        <div className="flex flex-wrap gap-2 sm:gap-2.5 flex-1">
+<div className="flex flex-wrap items-start gap-2 sm:gap-2.5 flex-1">
           {group.skills.map((skill, si) => (
             <SkillChip
               key={skill.name}
@@ -206,23 +206,25 @@ export default function Skills() {
       className="relative w-full bg-[#080808] text-white overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
-      {/* Accent line reveal — no blocking curtain on Skills */}
+      {/* Top rule — fades in */}
       <motion.div
-        className="absolute top-0 left-0 right-0 z-10 h-[2px] bg-white/25"
-        initial={{ scaleX: 0 }}
-        animate={isRevealed ? { scaleX: 1 } : { scaleX: 0 }}
-        style={{ originX: 0 }}
-        transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+        className="absolute top-0 left-0 right-0 z-10 h-[1px]"
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 40%, rgba(255,255,255,0.06) 100%)",
+        }}
+        initial={{ opacity: 0 }}
+        animate={isRevealed ? { opacity: 1 } : {}}
+        transition={{ duration: 1.2 }}
       />
 
-      <div className="w-full h-px bg-white/[0.07]" />
+      <div className="w-full h-px bg-white/[0.06]" />
 
       {/* Watermark */}
       <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none" aria-hidden="true">
         <span style={{
           fontFamily: "var(--font-bebas)",
           fontSize: "clamp(100px, 22vw, 300px)",
-          color: "rgba(255,255,255,0.018)",
+          color: "rgba(255,255,255,0.016)",
           letterSpacing: "0.05em",
           lineHeight: 0.9,
           whiteSpace: "nowrap",
@@ -231,34 +233,25 @@ export default function Skills() {
         }}>SKILLS</span>
       </div>
 
-      {/* Floating dots — same as About & Work */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 rounded-full bg-white/[0.06]"
-            style={{ top: `${12 + i * 16}%`, right: `${5 + (i % 3) * 5}%` }}
-            animate={{ opacity: [0.06, 0.18, 0.06] }}
-            transition={{ duration: 3 + i * 0.7, repeat: Infinity, delay: i * 0.5 }}
-          />
-        ))}
-      </div>
-
-      <motion.div className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24" initial={{ opacity: 0, y: 24 }} animate={isRevealed ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}>
-
+      <motion.div
+        className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24"
+        initial={{ opacity: 0, y: 20 }}
+        animate={isRevealed ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}
+      >
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-20">
           <div>
             <motion.div
               className="flex items-center gap-4 mb-5"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={isRevealed ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
             >
               <span className="text-[10px] tracking-[0.45em] uppercase text-white/25">03</span>
               <motion.div className="h-px bg-white/15"
                 initial={{ width: 0 }}
-                animate={isRevealed ? { width: 32 } : { width: 0 }}
+                animate={isRevealed ? { width: 28 } : { width: 0 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
               />
               <span className="text-[10px] tracking-[0.45em] uppercase text-white/25">Stack</span>
@@ -276,7 +269,7 @@ export default function Skills() {
                     initial={{ y: "105%" }}
                     animate={isRevealed ? { y: "0%" } : {}}
                     transition={{ duration: 1.0, delay: 0.55 + li * 0.13, ease: [0.76, 0, 0.24, 1] }}
-                    style={{ color: li === 1 ? "rgba(255,255,255,0.22)" : "white" }}
+                    style={{ color: li === 1 ? "rgba(255,255,255,0.18)" : "white" }}
                   >{line}</motion.div>
                 </div>
               ))}
@@ -285,23 +278,23 @@ export default function Skills() {
 
           <motion.div
             className="flex items-end gap-8 sm:gap-10"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={isRevealed ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             {[
               { val: `${totalSkills}+`, label: "Technologies" },
-              { val: `${skillGroups.length}`, label: "Categories" },
+              { val: `${skillGroups.length}`,  label: "Categories" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-1">
                 <span style={{
                   fontFamily: "var(--font-bebas)",
-                  fontSize: "clamp(34px, 5vw, 100px)",
+                  fontSize: "clamp(34px, 5vw, 88px)",
                   letterSpacing: "0.02em",
                   lineHeight: 1,
                   color: "white",
                 }}>{s.val}</span>
-                <span className="text-[10px] 2xl:text-[15px] tracking-[0.3em] uppercase text-white/25">{s.label}</span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-white/25">{s.label}</span>
               </div>
             ))}
           </motion.div>
@@ -309,44 +302,38 @@ export default function Skills() {
 
         <LineReveal delay={0.3} />
 
-        {/* Hint */}
         <FadeUp delay={0.4}>
-          <p className="text-[10px] 2xl:text-[15px] tracking-[0.35em] uppercase text-white/20 mt-5 mb-2">
+          <p className="text-[10px] 2xl:text-[13px] tracking-[0.35em] uppercase text-white/20 mt-5 mb-2"
+            style={{ fontFamily: "var(--font-outfit)" }}>
             ↳ hover any skill to expand
           </p>
         </FadeUp>
 
-        {/* Groups */}
         <div className="mt-4">
           {skillGroups.map((group, i) => (
-            <SkillGroup key={group.id}   group={group} index={i}  />
+            <SkillGroup key={group.id} group={group} index={i} />
           ))}
         </div>
 
-        {/* Footer */}
         <FadeUp delay={0.2} className="mt-12 sm:mt-14">
-          <LineReveal />
           <div className="flex items-center justify-between flex-wrap gap-3 mt-5">
             <div className="flex items-center gap-3">
               <motion.div
-                className="w-1.5 h-1.5 rounded-full bg-white/30"
-                animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.7, 0.3] }}
+                className="w-1.5 h-1.5 rounded-full bg-white/35"
+                animate={{ scale: [1, 1.55, 1], opacity: [0.35, 0.75, 0.35] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
               />
-              <span className="text-[10px] tracking-[0.32em] uppercase text-white/25">
+              <span className="text-[10px] 2xl:text-[13px] tracking-[0.32em] uppercase text-white/25">
                 Always learning — currently exploring TypeScript & Docker
               </span>
             </div>
-            <span className="text-[10px] tracking-[0.3em] uppercase text-white/15"
+            <span className="text-[10px] 2xl:text-[13px] tracking-[0.3em] uppercase text-white/15"
               style={{ fontFamily: "var(--font-outfit)" }}>
               v2025.04
             </span>
           </div>
         </FadeUp>
-
       </motion.div>
-
-      
     </section>
   );
 }

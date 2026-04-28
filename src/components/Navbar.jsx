@@ -15,7 +15,7 @@ function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         {/* LOGO */}
-        <p className="text-[11px] tracking-[0.4em] uppercase text-white/60">
+        <p className="text-[11px] 2xl:text-[15px] tracking-[0.4em] uppercase text-white/60">
           UDESH
         </p>
 
@@ -25,7 +25,7 @@ function Navbar() {
             <motion.a
               key={item}
               href="#"
-              className="relative text-[11px] tracking-[0.3em] uppercase text-white/40 hover:text-white"
+              className="relative text-[11px] 2xl:text-[15px] tracking-[0.3em] uppercase text-white/40 hover:text-white"
               whileHover={{ y: -2 }}
             >
               {item}
@@ -47,7 +47,7 @@ function Navbar() {
               animate={{ scale: [1, 1.4, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-white/40">
+            <span className="text-[10px] 2xl:text-[14px] tracking-[0.3em] uppercase text-white/40">
               Available
             </span>
           </motion.div>

@@ -497,33 +497,13 @@ import { useRef, useState, useEffect } from "react";
 import {
   motion,
   useInView,
-  useMotionValue,
-  useTransform,
   animate,
   AnimatePresence,
 } from "framer-motion";
 ;
 /* ── Cursor spotlight ── */
 function SpotlightCard({ children, className = "" }) {
-  const cardRef = useRef(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const background = useTransform(
-    [mouseX, mouseY],
-    ([x, y]) =>
-      `radial-gradient(320px circle at ${x}px ${y}px, rgba(255,255,255,0.045), transparent 70%)`
-  );
-  const handleMouseMove = (e) => {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  };
-  return (
-    <motion.div ref={cardRef} onMouseMove={handleMouseMove} className={className} style={{ background }}>
-      {children}
-    </motion.div>
-  );
+  return <motion.div className={className}>{children}</motion.div>;
 }
 
 const projects = [

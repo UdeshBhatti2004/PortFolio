@@ -42,6 +42,31 @@ function SplitReveal({ text, delay = 0, className = "", style = {} }) {
   );
 }
 
+function MobileScrollHint() {
+  return (
+    <motion.button
+      type="button"
+      onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+      className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-white/35"
+      initial={{ opacity: 0, x: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, delay: 1.15, ease: [0.76, 0, 0.24, 1] }}
+      aria-label="Scroll to explore the portfolio"
+    >
+      <span className="text-[8px] tracking-[0.32em] uppercase">
+        Scroll
+      </span>
+      <span className="relative flex h-5 w-px justify-center bg-white/10">
+        <motion.span
+          className="absolute top-0 h-1.5 w-1.5 rounded-full bg-white/50"
+          animate={{ y: [0, 14, 0], opacity: [0.25, 1, 0.25] }}
+          transition={{ duration: 1.25, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </span>
+    </motion.button>
+  );
+}
+
 export default function Hero() {
   const containerRef = useRef(null);
   const mx = useMotionValue(0);
@@ -80,14 +105,14 @@ export default function Hero() {
     <>
       {/* ─── MOBILE LAYOUT ─── */}
       <div
-        className="flex sm:hidden sticky top-0 flex-col w-full min-h-screen bg-[#080808] text-white overflow-hidden"
+        className="relative flex sm:hidden sticky top-0 flex-col w-full h-[100svh] bg-[#080808] text-white overflow-hidden"
        style={{ fontFamily: "var(--font-bebas)" }}
       >
         {/* Navbar */}
         <Navbar />
 
         {/* Photo — top portion */}
-        <div className="relative w-full" style={{ height: "55vh" }}>
+        <div className="relative w-full" style={{ height: "44svh" }}>
           <img
             src="/Udesh.png"
             alt="Udesh Bhatti"
@@ -105,13 +130,13 @@ export default function Hero() {
         </div>
 
         {/* Name — below photo */}
-        <div className="flex flex-col items-center -mt-6 z-10 px-2">
+        <div className="flex flex-col items-center  z-10 px-2">
           <SplitReveal
             text="Udesh"
             delay={0.4}
             className="font-black text-white"
             style={{
-              fontSize: "clamp(64px, 21vw, 120px)",
+              fontSize: "clamp(56px, 19vw, 108px)",
               letterSpacing: "-0.01em",
               lineHeight: 0.88,
             }}
@@ -121,7 +146,7 @@ export default function Hero() {
             delay={0.58}
             className="font-black text-white"
             style={{
-              fontSize: "clamp(64px, 21vw, 120px)",
+              fontSize: "clamp(56px, 19vw, 108px)",
               letterSpacing: "-0.01em",
               lineHeight: 0.88,
             }}
@@ -129,19 +154,23 @@ export default function Hero() {
         </div>
 
         {/* Bottom info */}
-        <div className="px-5 mt-6 pb-10 z-10 flex flex-col items-center text-center">
-          <div className="h-5 overflow-hidden mb-2">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={tagIdx}
-                className="text-[9px] tracking-[0.4em] uppercase text-white/50"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-              >
-                {tags[tagIdx]}
-              </motion.p>
-            </AnimatePresence>
+        <div className="px-5 mt-3 pb-14 z-10 flex flex-col items-center text-center">
+          <div className="mb-2 flex items-center justify-center gap-3 relative ">
+            <div className="h-5 overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={tagIdx}
+                  className="text-[9px] tracking-[0.4em] uppercase text-white/50"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                >
+                  {tags[tagIdx]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+  
+            
           </div>
 
           <motion.p className="text-xs text-white/55 leading-relaxed">
@@ -153,9 +182,17 @@ export default function Hero() {
             </span>
           </motion.p>
 
-          <motion.button className="mt-5 flex items-center gap-2 border border-white/30 px-4 py-2.5 text-[10px] tracking-[0.3em] uppercase text-white/70 hover:bg-white hover:text-black transition-colors">
+          <motion.button className="mt-4 flex items-center gap-2 border border-white/30 px-4 py-2.5 text-[10px] tracking-[0.3em] uppercase text-white/70 hover:bg-white hover:text-black transition-colors">
             View My Work ↗
           </motion.button>
+        </div>
+
+        <div className="absolute bottom-16 right-5 z-20 sm:hidden">
+  <MobileScrollHint />
+</div>
+
+        <div className="mt-auto w-full">
+          <Marquee />
         </div>
       </div>
 

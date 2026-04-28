@@ -36,8 +36,11 @@ body {
 
 body {
   font-family: var(--font-outfit);
+  background: #080808;
 }
 
-* {
-  cursor: none;
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none;
+  }
 }
