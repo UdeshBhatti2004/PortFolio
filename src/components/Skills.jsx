@@ -1,25 +1,24 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-function FadeUp({ children, delay = 0, className = "" }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.1 });
+function FadeUp({ children, delay = 0, className = "",startAnimation }) {
+
+ 
+
   return (
-    <motion.div ref={ref} className={className}
+    <motion.div  className={className}
       initial={{ y: 28, opacity: 0 }}
-      animate={inView ? { y: 0, opacity: 1 } : {}}
+      animate={startAnimation ? { y: 0, opacity: 1 } : {}}
       transition={{ duration: 0.8, delay, ease: [0.76, 0, 0.24, 1] }}
     >{children}</motion.div>
   );
 }
 
-function LineReveal({ delay = 0 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.1 });
+function LineReveal({ delay = 0 ,startAnimation}) {
   return (
-    <motion.div ref={ref} className="h-px bg-white/[0.07] w-full"
+    <motion.div className="h-px bg-white/[0.07] w-full"
       initial={{ scaleX: 0 }} style={{ originX: 0 }}
-      animate={inView ? { scaleX: 1 } : {}}
+      animate={startAnimation ? { scaleX: 1 } : {}}
       transition={{ duration: 1.0, delay, ease: [0.76, 0, 0.24, 1] }}
     />
   );
@@ -66,7 +65,7 @@ const skillGroups = [
   },
 ];
 
-function SkillChip({ skill, delay = 0 }) {
+function SkillChip({ skill, delay = 0,startAnimation }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -74,8 +73,7 @@ function SkillChip({ skill, delay = 0 }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       initial={{ opacity: 0, y: 12, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.1 }}
+        animate={startAnimation ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.45, delay }}
       className="relative cursor-default"
       style={{ display: "inline-flex" }}
@@ -155,15 +153,11 @@ function SkillChip({ skill, delay = 0 }) {
   );
 }
 
-function SkillGroup({ group, index }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.1 });
-
+function SkillGroup({ group, index, startAnimation }) {
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
+      animate={startAnimation ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.08, ease: [0.76, 0, 0.24, 1] }}
       className="py-7 sm:py-9 border-b border-white/[0.06]"
     >
@@ -186,6 +180,7 @@ function SkillGroup({ group, index }) {
               key={skill.name}
               skill={skill}
               delay={index * 0.06 + si * 0.05}
+              startAnimation={startAnimation}
             />
           ))}
         </div>
@@ -194,15 +189,13 @@ function SkillGroup({ group, index }) {
   );
 }
 
-export default function Skills() {
-  const sectionRef = useRef(null);
-  const isRevealed = useInView(sectionRef, { once: true, amount: 0 });
+export default function Skills({startAnimation}) {
+  const isRevealed = startAnimation;
   const totalSkills = skillGroups.reduce((a, g) => a + g.skills.length, 0);
 
   return (
     <section
       id="skills"
-      ref={sectionRef}
       className="relative w-full bg-[#080808] text-white overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
@@ -213,7 +206,7 @@ export default function Skills() {
           background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 40%, rgba(255,255,255,0.06) 100%)",
         }}
         initial={{ opacity: 0 }}
-        animate={isRevealed ? { opacity: 1 } : {}}
+        animate={startAnimation ? { opacity: 1 } : {}}
         transition={{ duration: 1.2 }}
       />
 
@@ -230,13 +223,14 @@ export default function Skills() {
           whiteSpace: "nowrap",
           display: "block",
           paddingLeft: "1vw",
+          paddingTop: "4vw",
         }}>SKILLS</span>
       </div>
 
       <motion.div
         className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24"
         initial={{ opacity: 0, y: 20 }}
-        animate={isRevealed ? { opacity: 1, y: 0 } : {}}
+        animate={startAnimation ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}
       >
         {/* Header */}
@@ -245,13 +239,13 @@ export default function Skills() {
             <motion.div
               className="flex items-center gap-4 mb-5"
               initial={{ opacity: 0, y: 16 }}
-              animate={isRevealed ? { opacity: 1, y: 0 } : {}}
+              animate={startAnimation ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
               <span className="text-[10px] tracking-[0.45em] uppercase text-white/25">03</span>
               <motion.div className="h-px bg-white/15"
                 initial={{ width: 0 }}
-                animate={isRevealed ? { width: 28 } : { width: 0 }}
+                animate={startAnimation ? { width: 28 } : { width: 0 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
               />
               <span className="text-[10px] tracking-[0.45em] uppercase text-white/25">Stack</span>
@@ -267,7 +261,7 @@ export default function Skills() {
                 <div key={li} className="overflow-hidden">
                   <motion.div
                     initial={{ y: "105%" }}
-                    animate={isRevealed ? { y: "0%" } : {}}
+                    animate={startAnimation ? { y: "0%" } : {}}
                     transition={{ duration: 1.0, delay: 0.55 + li * 0.13, ease: [0.76, 0, 0.24, 1] }}
                     style={{ color: li === 1 ? "rgba(255,255,255,0.18)" : "white" }}
                   >{line}</motion.div>
@@ -279,7 +273,7 @@ export default function Skills() {
           <motion.div
             className="flex items-end gap-8 sm:gap-10"
             initial={{ opacity: 0, y: 16 }}
-            animate={isRevealed ? { opacity: 1, y: 0 } : {}}
+            animate={startAnimation ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
             {[
@@ -300,9 +294,9 @@ export default function Skills() {
           </motion.div>
         </div>
 
-        <LineReveal delay={0.3} />
+        <LineReveal delay={0.3} startAnimation={startAnimation} />
 
-        <FadeUp delay={0.4}>
+        <FadeUp delay={0.4} startAnimation={startAnimation}>
           <p className="text-[10px] 2xl:text-[13px] tracking-[0.35em] uppercase text-white/20 mt-5 mb-2"
             style={{ fontFamily: "var(--font-outfit)" }}>
             ↳ hover any skill to expand
@@ -311,11 +305,11 @@ export default function Skills() {
 
         <div className="mt-4">
           {skillGroups.map((group, i) => (
-            <SkillGroup key={group.id} group={group} index={i} />
+            <SkillGroup key={group.id} group={group} index={i} startAnimation={startAnimation} />
           ))}
         </div>
 
-        <FadeUp delay={0.2} className="mt-12 sm:mt-14">
+        <FadeUp delay={0.2} className="mt-12 sm:mt-14" startAnimation={startAnimation}>
           <div className="flex items-center justify-between flex-wrap gap-3 mt-5">
             <div className="flex items-center gap-3">
               <motion.div
@@ -324,12 +318,12 @@ export default function Skills() {
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
               />
               <span className="text-[10px] 2xl:text-[13px] tracking-[0.32em] uppercase text-white/25">
-                Always learning — currently exploring TypeScript & Docker
+                Always learning — currently exploring TypeScript & Next JS
               </span>
             </div>
             <span className="text-[10px] 2xl:text-[13px] tracking-[0.3em] uppercase text-white/15"
               style={{ fontFamily: "var(--font-outfit)" }}>
-              v2025.04
+              v2026.04
             </span>
           </div>
         </FadeUp>

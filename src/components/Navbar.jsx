@@ -3,7 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-  const menuItems = ["Work", "About", "Skills", "Contact"];
+  const menuItems = [
+  { label: "Work", id: "#work" },
+  { label: "About", id: "#about" },
+  { label: "Skills", id: "#skills" },
+  { label: "Contact", id: "#contact" },
+];
 
   return (
     <>
@@ -23,12 +28,12 @@ function Navbar() {
         <div className="hidden md:flex gap-10">
           {menuItems.map((item) => (
             <motion.a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.id}
               className="relative text-[11px] 2xl:text-[15px] tracking-[0.3em] uppercase text-white/40 hover:text-white"
               whileHover={{ y: -2 }}
             >
-              {item}
+              {item.label}
               <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
             </motion.a>
           ))}

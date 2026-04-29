@@ -185,6 +185,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
             whiteSpace: "nowrap",
             display: "block",
             paddingLeft: "1vw",
+            paddingTop: "4vw",
           }}
         >
           ABOUT

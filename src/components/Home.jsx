@@ -22,7 +22,7 @@ function SplitReveal({ text, delay = 0, className = "", style = {} }) {
         <span
           key={i}
           className="inline-block overflow-hidden"
-          style={{ lineHeight: 0.88 }}
+          style={{ lineHeight: 0.95 }}
         >
           <motion.span
             className="inline-block"
@@ -49,8 +49,7 @@ function MobileScrollHint() {
       onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
       className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-white/35"
       initial={{ opacity: 0, x: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.75, delay: 1.15, ease: [0.76, 0, 0.24, 1] }}
+      animate={{ opacity: 1, x: 0 }}      transition={{ duration: 0.75, delay: 1.15, ease: [0.76, 0, 0.24, 1] }}
       aria-label="Scroll to explore the portfolio"
     >
       <span className="text-[8px] tracking-[0.32em] uppercase">
