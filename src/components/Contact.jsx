@@ -1,18 +1,21 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { motion } from "framer-motion";
+import { motion,useInView } from "framer-motion";
+import.meta.env.VITE_EMAIL_SERVICE,
+import.meta.env.VITE_EMAIL_TEMPLATE,
+import.meta.env.VITE_EMAIL_PUBLIC_KEY
 
 
-/* ─── helpers ─────────────────────────────────────────────────────────── */
-function FadeUp({ children, delay = 0, className = "" ,startAnimation}) {
+function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
-const isRevealed = startAnimation;
+  const inView = useInView(ref, { once: true, amount: 0.1 });
+
   return (
     <motion.div
       ref={ref}
       className={className}
       initial={{ y: 24, opacity: 0 }}
-      animate={isRevealed ? { y: 0, opacity: 1 } : {}}
+      animate={inView ? { y: 0, opacity: 1 } : { y: 24, opacity: 0 }}
       transition={{ duration: 0.8, delay, ease: [0.76, 0, 0.24, 1] }}
     >
       {children}
@@ -20,7 +23,7 @@ const isRevealed = startAnimation;
   );
 }
 
-/* ─── data ─────────────────────────────────────────────────────────────── */
+
 const channels = [
   {
     label: "Email",
@@ -44,7 +47,7 @@ const channels = [
   },
 ];
 
-/* ─── channel icon map ─────────────────────────────────────────────────── */
+
 const icons = {
   Email: (
     <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
@@ -71,7 +74,7 @@ const icons = {
   ),
 };
 
-/* ─── ChannelRow ───────────────────────────────────────────────────────── */
+
 function ChannelRow({ ch, delay }) {
   const [hov, setHov] = useState(false);
   return (
@@ -149,7 +152,7 @@ function ChannelRow({ ch, delay }) {
   );
 }
 
-/* ─── FormField ────────────────────────────────────────────────────────── */
+
 function FormField({ label, as: Tag = "input", extra, onChange, ...props }) {
   const [focused, setFocused] = useState(false);
   const isTextarea = Tag === "textarea";
@@ -183,9 +186,9 @@ function FormField({ label, as: Tag = "input", extra, onChange, ...props }) {
             appearance: "none",
           }}
         />
-        {/* static track */}
+        {}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-white/[0.09]" />
-        {/* animated white bar on focus */}
+        {}
         <motion.div
           className="absolute bottom-0 left-0 h-px bg-white/50"
           animate={{ width: focused ? "100%" : "0%" }}
@@ -196,13 +199,14 @@ function FormField({ label, as: Tag = "input", extra, onChange, ...props }) {
   );
 }
 
-/* ─── Main ─────────────────────────────────────────────────────────────── */
-export default function Contact({startAnimation}) {
 
-const isRevealed = startAnimation;
+export default function Contact() {
+
+const ref = useRef(null);
+const isInView = useInView(ref, { once: true, margin: "-120px" });
 
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | error | sending | sent
+  const [status, setStatus] = useState("idle"); 
   const [shake, setShake] = useState(false);
 
   const handleChange = (e) =>
@@ -223,15 +227,15 @@ const handleSubmit = () => {
   setStatus("sending");
 
   emailjs.send(
-    "service_m9qop9e",
-    "template_b6j0e9m",
+    import.meta.env.VITE_EMAIL_SERVICE,
+    import.meta.env.VITE_EMAIL_TEMPLATE,
     {
       name: form.name,
       email: form.email,
       subject: form.subject,
       message: form.message,
     },
-    "LPyojrWvdBE_N9EKe"
+    import.meta.env.VITE_EMAIL_PUBLIC_KEY
   )
   .then(() => setStatus("sent"))
   .catch(() => {
@@ -242,21 +246,22 @@ const handleSubmit = () => {
 
   return (
     <section
+      ref={ref}
       id="contact"
       className="relative w-full bg-[#080808] text-white overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
-      {/* Top rule */}
+      {}
       <motion.div
         className="absolute top-0 left-0 right-0 z-10 h-px"
         style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,.18) 40%,rgba(255,255,255,.05) 100%)" }}
         initial={{ opacity: 0 }}
-        animate={isRevealed ? { opacity: 1 } : {}}
+        animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 1.2 }}
       />
       <div className="w-full h-px bg-white/[0.06]" />
 
-      {/* Watermark */}
+      {}
       <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none" aria-hidden="true">
         <span
           style={{
@@ -277,29 +282,29 @@ const handleSubmit = () => {
 
       <div className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24">
 
-        {/* ── Two-col grid: LEFT = eyebrow + heading + pill + copy + channels, RIGHT = form ── */}
+        {}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-          {/* ── LEFT COLUMN ── */}
-          <FadeUp delay={0.1} startAnimation={startAnimation}>
-            {/* Eyebrow */}
+          {}
+          <FadeUp delay={0.1}  >
+            {}
             <motion.div
               className="flex items-center gap-4 mb-6"
               initial={{ opacity: 0 }}
-              animate={isRevealed ? { opacity: 1 } : {}}
+              animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.45 }}
             >
               <span className="text-[10px] tracking-[0.45em] uppercase text-white/20">05</span>
               <motion.div
                 className="h-px bg-white/13"
                 initial={{ width: 0 }}
-                animate={isRevealed ? { width: 24 } : { width: 0 }}
+                animate={isInView ? { width: 24 } : { width: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               />
               <span className="text-[10px] tracking-[0.45em] uppercase text-white/20">Contact</span>
             </motion.div>
 
-            {/* Heading */}
+            {}
             <div
               style={{
                 fontFamily: "var(--font-bebas)",
@@ -312,7 +317,7 @@ const handleSubmit = () => {
                 <div key={li} className="overflow-hidden">
                   <motion.div
                     initial={{ y: "105%" }}
-                    animate={isRevealed ? { y: "0%" } : {}}
+                    animate={isInView ? { y: "0%" } : {}}
                     transition={{ duration: 1.0, delay: 0.5 + li * 0.12, ease: [0.76, 0, 0.24, 1] }}
                     style={{ color: li === 1 ? "rgba(255,255,255,0.16)" : "white" }}
                   >
@@ -322,11 +327,11 @@ const handleSubmit = () => {
               ))}
             </div>
 
-            {/* Availability pill */}
+            {}
             <motion.div
               className="inline-flex items-center gap-2 border border-white/10 px-3 py-1.5 mt-5 mb-7"
               initial={{ opacity: 0, y: 8 }}
-              animate={isRevealed ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.85 }}
             >
               <motion.div
@@ -339,13 +344,13 @@ const handleSubmit = () => {
               </span>
             </motion.div>
 
-            {/* Sub-copy */}
+            {}
             <p className="text-[13px] text-white/35 leading-[1.75] tracking-[0.02em] max-w-xs mb-7">
               Have a project in mind, a role to fill, or just want to say hello?
               Pick a channel or drop a message — I reply to everything.
             </p>
 
-            {/* Channels */}
+            {}
             <div className="border-t border-white/[0.055]">
               {channels.map((ch, i) => (
                 <ChannelRow key={ch.label} ch={ch} delay={0.5 + i * 0.07} />
@@ -353,8 +358,8 @@ const handleSubmit = () => {
             </div>
           </FadeUp>
 
-          {/* ── RIGHT COLUMN — form starts aligned with pill on desktop ── */}
-          <FadeUp delay={0.3} className="lg:pt-[280px]" startAnimation={startAnimation}>
+          {}
+          <FadeUp delay={0.3} className="lg:pt-[280px]" >
 
             <div className="flex items-center gap-3 mb-6">
               <span
@@ -366,7 +371,7 @@ const handleSubmit = () => {
               <div className="flex-1 h-px bg-white/[0.07]" />
             </div>
 
-            {/* Name — full width, own line */}
+            {}
             <FormField
               label="Name"
               name="name"
@@ -376,7 +381,7 @@ const handleSubmit = () => {
               maxLength={60}
             />
 
-            {/* Email — full width, own line */}
+            {}
             <FormField
               label="Email"
               type="email"
@@ -386,7 +391,7 @@ const handleSubmit = () => {
               onChange={handleChange}
             />
 
-            {/* Subject — full width, own line */}
+            {}
             <FormField
               label="Subject"
               name="subject"
@@ -396,7 +401,7 @@ const handleSubmit = () => {
               maxLength={80}
             />
 
-            {/* Message — full width, own line */}
+            {}
             <FormField
               label="Message"
               as="textarea"
@@ -419,7 +424,7 @@ const handleSubmit = () => {
               }
             />
 
-            {/* Submit row */}
+            {}
             {status !== "sent" && (
               <div className="flex items-center gap-3 mt-[18px]">
                 <motion.button
@@ -461,7 +466,7 @@ const handleSubmit = () => {
               </div>
             )}
 
-            {/* Success */}
+            {}
             {status === "sent" && (
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
@@ -483,8 +488,8 @@ const handleSubmit = () => {
           </FadeUp>
         </div>
 
-        {/* ── Footer ── */}
-        <FadeUp delay={0.35} className="mt-14 sm:mt-16" startAnimation={startAnimation}>
+        {}
+        <FadeUp delay={0.35} className="mt-14 sm:mt-16" >
           <div className="h-px bg-white/[0.06] mb-5" />
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center gap-3">
@@ -498,7 +503,7 @@ const handleSubmit = () => {
               </span>
             </div>
             <span className="text-[10px] tracking-[0.28em] uppercase text-white/12">
-              © 2025 · Crafted with intent
+              © 2026 · Crafted with intent
             </span>
           </div>
         </FadeUp>

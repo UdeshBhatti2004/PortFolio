@@ -41,7 +41,7 @@ export default function Loader({ onComplete }) {
         transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
       }}
     >
-      {/* subtle grain */}
+      {}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
@@ -50,10 +50,10 @@ export default function Loader({ onComplete }) {
         }}
       />
 
-      {/* content */}
+      {}
       <div className="flex flex-col items-center gap-6">
 
-        {/* IMAGE REVEAL (UPDATED SIZE) */}
+        {}
         <div className="relative w-52 h-72 overflow-hidden">
           <Motion.img
             src="/Udesh.png"
@@ -67,10 +67,10 @@ export default function Loader({ onComplete }) {
             }}
           />
 
-          {/* cinematic fade */}
+          {}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
 
-          {/* scan line */}
+          {}
           <Motion.div
             className="absolute left-0 right-0 h-[2px] bg-white/40"
             animate={{ top: ["0%", "100%"] }}
@@ -78,7 +78,7 @@ export default function Loader({ onComplete }) {
           />
         </div>
 
-        {/* loading bar */}
+        {}
         <div className="w-40 h-[1px] bg-white/15 relative overflow-hidden">
           <div
             id="ldr-bar"
@@ -87,7 +87,7 @@ export default function Loader({ onComplete }) {
           />
         </div>
 
-        {/* text */}
+        {}
         <p className="text-[10px] tracking-[0.4em] text-white/30">
           INITIALIZING EXPERIENCE
         </p>

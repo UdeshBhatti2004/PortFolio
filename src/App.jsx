@@ -12,7 +12,6 @@ import { AnimatePresence, motion as Motion } from 'framer-motion'
 import LenisProvider from './components/LenisProvider'
 
 function App() {
-  const [skillsStart, setSkillsStart] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -43,10 +42,10 @@ function App() {
         >
           <Home />
           <About />
-          <Work onComplete={() => setSkillsStart(true),400} />
-          <Skills startAnimation={skillsStart} />
-          <Contact startAnimation={skillsStart} />
-          <Footer  startAnimation={skillsStart}/>
+          <Work />
+          <Skills/>
+          <Contact />
+          <Footer />
         </Motion.main>
         
       )}
