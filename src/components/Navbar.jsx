@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
@@ -9,6 +9,11 @@ function Navbar() {
   { label: "Skills", id: "#skills" },
   { label: "Contact", id: "#contact" },
 ];
+
+
+    useEffect(() => {
+  document.body.style.overflow = open ? "hidden" : "auto";
+}, [open])
 
   return (
     <>
@@ -200,8 +205,8 @@ function Navbar() {
     transition={{ delay: 0.7 }}
   >
     {[
-      { label: "GitHub", href: "https://github.com" },
-      { label: "LinkedIn", href: "https://linkedin.com" },
+      { label: "GitHub", href: "https://github.com/UdeshBhatti2004" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/udesh-bhatti-3508192aa/" },
     ].map((s) => (
       <a
         key={s.label}

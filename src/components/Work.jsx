@@ -148,7 +148,7 @@ function ProjectRow({ project, i }) {
             </div>
 
             <motion.p
-              className="text-white/40 text-sm leading-relaxed max-w-xl overflow-hidden"
+              className="text-white/80 text-sm leading-relaxed max-w-xl overflow-hidden"
               style={{ fontFamily: "var(--font-outfit)" }}
               animate={{
                 height: hovered ? "auto" : 0,
@@ -167,7 +167,7 @@ function ProjectRow({ project, i }) {
               {project.tech.map((t, ti) => (
                 <motion.span
                   key={ti}
-                  className="text-[9px] tracking-[0.28em] uppercase text-white/40 border border-white/[0.1] px-2.5 py-1"
+                  className="text-[9px] tracking-[0.28em] uppercase text-white border border-white/[0.1] px-2.5 py-1"
                   style={{ fontFamily: "var(--font-outfit)" }}
                   animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0.6 }}
                   transition={{ duration: 0.3, delay: ti * 0.04 }}
@@ -381,6 +381,15 @@ export default function Work() {
                 </div>
               ))}
             </div>
+            <motion.p
+  initial={{ opacity: 0, y: 20 }}
+  animate={isRevealed ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.6, delay: 0.7 }}
+  className="text-[10px] 2xl:text-[13px] tracking-[0.35em] uppercase text-white/30 mt-5 mb-2"
+  style={{ fontFamily: "var(--font-outfit)" }}
+>
+  ↳ hover or tap a project to explore details
+</motion.p>
           </div>
 
           <motion.p
@@ -398,11 +407,9 @@ export default function Work() {
         </div>
       </motion.div>
 
-      {/* ══════════════════════════════════
-          STACK ANIMATION AREA
-      ══════════════════════════════════ */}
-      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16 w-full">
-        {}
+      
+
+      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16">        {}
         <AnimatePresence>
           {showStack && (
             <motion.div

@@ -1,11 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const dot = useRef(null);
   const ring = useRef(null);
-  const pos = useRef({ x: 0, y: 0 });
-  const ring_pos = useRef({ x: 0, y: 0 });
+  const pos = useRef({ x: -100, y: -100 });
+  const ring_pos = useRef({ x: -100, y: -100 });
   const raf = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   const canUseCustomCursor =
     typeof window !== "undefined" &&
@@ -15,6 +16,7 @@ export default function CustomCursor() {
     if (!canUseCustomCursor) return;
 
     const move = (e) => {
+      if (!isVisible) setIsVisible(true);
       pos.current = { x: e.clientX, y: e.clientY };
     };
 
@@ -52,11 +54,11 @@ export default function CustomCursor() {
     <>
       <div
         ref={dot}
-        className="fixed w-2.5 h-2.5 bg-white rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+        className={`fixed w-2.5 h-2.5 bg-white rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}
       />
       <div
         ref={ring}
-        className="fixed w-10 h-10 border border-white rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
+        className={`fixed w-10 h-10 border border-white rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 mix-blend-difference transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"}`}
       />
     </>
   );
