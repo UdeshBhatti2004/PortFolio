@@ -83,7 +83,7 @@ function ProjectRow({ project, i }) {
         />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[80px_1fr_auto] items-stretch">
-          {}
+          
           <div className="hidden lg:flex items-start justify-center pt-8 pb-8 border-r border-white/[0.07]">
             <motion.span
               className="text-[11px] tracking-[0.4em] uppercase"
@@ -102,7 +102,7 @@ function ProjectRow({ project, i }) {
             </motion.span>
           </div>
 
-          {}
+          
           <div className="px-5 sm:px-10 py-6 sm:py-8 flex flex-col gap-3 sm:gap-4">
             <div className="flex items-center gap-3 flex-wrap">
               <span
@@ -178,7 +178,7 @@ function ProjectRow({ project, i }) {
             </motion.div>
           </div>
 
-          {}
+          
           <div className="flex lg:flex-col items-center justify-end lg:justify-center gap-4 px-5 sm:px-8 py-4 lg:py-6 lg:border-l border-white/[0.07]">
             <motion.div
               className="hidden lg:flex items-center justify-center w-12 h-12 border border-white/10 rounded-full"
@@ -224,7 +224,7 @@ function ProjectRow({ project, i }) {
           </div>
         </div>
 
-        {}
+        
         <motion.div
           className="absolute bottom-0 left-0 h-[1px] bg-white/30"
           animate={{ width: hovered ? "100%" : "0%" }}
@@ -285,7 +285,7 @@ export default function Work() {
       className="relative w-full bg-[#080808] text-white overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
-      {}
+      
       <motion.div
         className="absolute inset-0 z-50 bg-[#080808] pointer-events-none"
         initial={{ scaleY: 1 }}
@@ -303,7 +303,7 @@ export default function Work() {
 
       <div className="w-full h-px bg-white/[0.07]" />
 
-      {}
+      
       <div
         className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none"
         aria-hidden="true"
@@ -325,7 +325,7 @@ export default function Work() {
         </span>
       </div>
 
-      {}
+      
       <motion.div
         className="relative z-10 px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-10"
         initial={{ opacity: 0 }}
@@ -409,7 +409,7 @@ export default function Work() {
 
       
 
-      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16">        {}
+      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16">        
         <AnimatePresence>
           {showStack && (
             <motion.div
@@ -459,7 +459,7 @@ export default function Work() {
                         : { y: -260, opacity: 0, scaleX: 0.88 }
                     }
                   >
-                    {}
+                    
                     <div
                       className="w-full border border-white/[0.13] bg-[#0d0d0d] flex items-center justify-between gap-4 flex-wrap"
                       style={{
@@ -467,7 +467,7 @@ export default function Work() {
                         boxShadow: "0 12px 48px rgba(0,0,0,0.7)",
                       }}
                     >
-                      {}
+                      
                       <div className="flex items-center gap-4 sm:gap-6 flex-wrap">
                         <span
                           style={{
@@ -503,7 +503,7 @@ export default function Work() {
                           {project.type}
                         </span>
                       </div>
-                      {}
+                      
                       <span
                         style={{
                           fontFamily: "var(--font-outfit)",
@@ -520,7 +520,7 @@ export default function Work() {
                 );
               })}
 
-              {}
+              
               <AnimatePresence>
                 {phase === "stacked" && (
                   <motion.div
@@ -546,7 +546,7 @@ export default function Work() {
           )}
         </AnimatePresence>
 
-        {}
+        
         <AnimatePresence>
           {isSpread && (
             <motion.div
@@ -581,7 +581,7 @@ export default function Work() {
         </AnimatePresence>
       </div>
 
-      {}
+      
       <motion.div
         className="relative z-10 w-full px-5 sm:px-10 md:px-16 py-10"
         animate={{ opacity: isSpread ? 1 : 0 }}

@@ -12,7 +12,7 @@ const items = [
 export default function Marquee() {
   return (
     <div className="w-full  overflow-hidden bg-[#080808] border-y border-white/[0.07] py-2.5 relative">
-      {}
+      
       <div className="absolute left-0 top-0 bottom-0 w-14 z-10 bg-gradient-to-r from-[#080808] to-transparent pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-14 z-10 bg-gradient-to-l from-[#080808] to-transparent pointer-events-none" />
 

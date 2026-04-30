@@ -186,9 +186,9 @@ function FormField({ label, as: Tag = "input", extra, onChange, ...props }) {
             appearance: "none",
           }}
         />
-        {}
+        
         <div className="absolute bottom-0 left-0 right-0 h-px bg-white/[0.09]" />
-        {}
+        
         <motion.div
           className="absolute bottom-0 left-0 h-px bg-white/50"
           animate={{ width: focused ? "100%" : "0%" }}
@@ -251,7 +251,7 @@ const handleSubmit = () => {
       className="relative w-full bg-[#080808] text-white overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
-      {}
+      
       <motion.div
         className="absolute top-0 left-0 right-0 z-10 h-px"
         style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,.18) 40%,rgba(255,255,255,.05) 100%)" }}
@@ -261,7 +261,7 @@ const handleSubmit = () => {
       />
       <div className="w-full h-px bg-white/[0.06]" />
 
-      {}
+      
       <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none" aria-hidden="true">
         <span
           style={{
@@ -282,12 +282,12 @@ const handleSubmit = () => {
 
       <div className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24">
 
-        {}
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
 
-          {}
+          
           <FadeUp delay={0.1}  >
-            {}
+            
             <motion.div
               className="flex items-center gap-4 mb-6"
               initial={{ opacity: 0 }}
@@ -304,7 +304,7 @@ const handleSubmit = () => {
               <span className="text-[10px] tracking-[0.45em] uppercase text-white/20">Contact</span>
             </motion.div>
 
-            {}
+            
             <div
               style={{
                 fontFamily: "var(--font-bebas)",
@@ -327,7 +327,7 @@ const handleSubmit = () => {
               ))}
             </div>
 
-            {}
+            
             <motion.div
               className="inline-flex items-center gap-2 border border-white/10 px-3 py-1.5 mt-5 mb-7"
               initial={{ opacity: 0, y: 8 }}
@@ -344,13 +344,13 @@ const handleSubmit = () => {
               </span>
             </motion.div>
 
-            {}
+            
             <p className="text-[13px] text-white/35 leading-[1.75] tracking-[0.02em] max-w-xs mb-7">
               Have a project in mind, a role to fill, or just want to say hello?
               Pick a channel or drop a message — I reply to everything.
             </p>
 
-            {}
+            
             <div className="border-t border-white/[0.055]">
               {channels.map((ch, i) => (
                 <ChannelRow key={ch.label} ch={ch} delay={0.5 + i * 0.07} />
@@ -358,7 +358,7 @@ const handleSubmit = () => {
             </div>
           </FadeUp>
 
-          {}
+          
           <FadeUp delay={0.3} className="lg:pt-[280px]" >
 
             <div className="flex items-center gap-3 mb-6">
@@ -371,7 +371,7 @@ const handleSubmit = () => {
               <div className="flex-1 h-px bg-white/[0.07]" />
             </div>
 
-            {}
+            
             <FormField
               label="Name"
               name="name"
@@ -381,7 +381,7 @@ const handleSubmit = () => {
               maxLength={60}
             />
 
-            {}
+            
             <FormField
               label="Email"
               type="email"
@@ -391,7 +391,7 @@ const handleSubmit = () => {
               onChange={handleChange}
             />
 
-            {}
+            
             <FormField
               label="Subject"
               name="subject"
@@ -401,7 +401,7 @@ const handleSubmit = () => {
               maxLength={80}
             />
 
-            {}
+            
             <FormField
               label="Message"
               as="textarea"
@@ -424,7 +424,7 @@ const handleSubmit = () => {
               }
             />
 
-            {}
+            
             {status !== "sent" && (
               <div className="flex items-center gap-3 mt-[18px]">
                 <motion.button
@@ -466,7 +466,7 @@ const handleSubmit = () => {
               </div>
             )}
 
-            {}
+            
             {status === "sent" && (
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
@@ -488,7 +488,7 @@ const handleSubmit = () => {
           </FadeUp>
         </div>
 
-        {}
+        
         <FadeUp delay={0.35} className="mt-14 sm:mt-16" >
           <div className="h-px bg-white/[0.06] mb-5" />
           <div className="flex items-center justify-between flex-wrap gap-3">

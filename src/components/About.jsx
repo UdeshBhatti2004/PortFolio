@@ -157,7 +157,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
         style={{ transformOrigin: "top" }}
       />
 
-      {}
+      
       <motion.div
         className="absolute top-0 left-0 right-0 z-[60] h-[2px] bg-white/30"
         initial={{ scaleX: 0 }}
@@ -166,10 +166,10 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
         transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1], delay: 0.0 }}
       />
 
-      {}
+      
     
 
-      {}
+      
       <motion.div
         className="absolute top-14 left-0 w-full overflow-hidden pointer-events-none select-none"
         style={{ y: watermarkY }}
@@ -199,7 +199,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
         transition={{ duration: 1.2, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
       >
 
-        {}
+        
         <motion.div
           className="flex items-center gap-4 mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -218,9 +218,9 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
 
-          {}
+          
           <div>
-            {}
+            
             <div
               className="leading-none mb-8"
               style={{
@@ -236,7 +236,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
 
             <LineReveal delay={0.3} />
 
-            {}
+            
             <FadeUp delay={0.32}>
               <p className="mt-7 text-white/50 text-sm sm:text-[15px] 2xl:text-[20px] leading-[1.9] sm:w-full xl:max-w-[440px] 2xl:max-w-[600px]">
                 I'm{" "}
@@ -249,7 +249,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
               </p>
             </FadeUp>
 
-            {}
+            
             <FadeUp delay={0.40}>
               <p className="mt-5 text-white/30 text-sm sm:text-[15px] 2xl:text-[20px] leading-[1.9] sm:w-full xl:max-w-[440px] 2xl:max-w-[600px]">
                 I obsess over the details others skip — the micro-interaction
@@ -260,7 +260,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
               </p>
             </FadeUp>
 
-            {}
+            
             <FadeUp delay={0.48}>
               <div className="mt-10 flex items-center gap-5 flex-wrap">
                 <MagneticBtn href="https://github.com/UdeshBhatti2004">
@@ -279,10 +279,10 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
             </FadeUp>
           </div>
 
-          {}
+          
           <div className="flex flex-col gap-10">
 
-            {}
+            
             <div className="grid grid-cols-3 divide-x divide-white/[0.07]">
               {stats.map((s, i) => (
                 <motion.div
@@ -315,7 +315,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
 
             <LineReveal delay={0.2} />
 
-            {}
+            
             <div>
               <FadeUp delay={0.15}>
                 <p className="text-[10px] 2xl:text-[15px] tracking-[0.4em] uppercase text-white/20 mb-5">
@@ -357,7 +357,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
                 ))}
               </div>
 
-              {}
+              
               <FadeUp delay={0.4}>
                 <motion.div
                   className="mt-6 flex items-center gap-3 border border-white/[0.08] px-4 py-3 relative overflow-hidden"
@@ -384,7 +384,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
 
             <LineReveal delay={0.35} />
 
-            {}
+            
             <motion.div ref={tagsRef} className="flex flex-wrap gap-2">
               {tags.map((tag, i) => (
                 <motion.span

@@ -102,15 +102,15 @@
 
     return (
       <>
-        {}
+        
         <div
           className="relative flex sm:hidden sticky top-0 flex-col w-full h-[100svh] bg-[#080808] text-white overflow-hidden"
         style={{ fontFamily: "var(--font-bebas)" }}
         >
-          {}
+          
           <Navbar />
 
-          {}
+          
           <div className="relative w-full" style={{ height: "44svh" }}>
             <img
               src="/Udesh.png"
@@ -126,7 +126,7 @@
             />
           </div>
 
-          {}
+          
           <div className="flex flex-col items-center  z-10 px-2">
             <SplitReveal
               text="Udesh"
@@ -150,7 +150,7 @@
             />
           </div>
 
-          {}
+          
           <div className="px-5 mt-3 pb-14 z-10 flex flex-col items-center text-center">
             <div className="mb-2 flex items-center justify-center gap-3 relative ">
               <div className="h-5 overflow-hidden">
@@ -196,7 +196,7 @@
           </div>
         </div>
 
-        {}
+        
         <div
           ref={containerRef}
           onMouseMove={onMouseMove}
@@ -204,7 +204,7 @@
           className="relative hidden sticky top-0 sm:flex w-full h-screen bg-[#080808] overflow-hidden text-white"
           style={{ fontFamily: "var(--font-bebas)" }}
         >
-          {}
+          
           <motion.div
             className="absolute inset-0 z-0"
             style={{ x: imgX, y: imgY, scale: 1.06 }}
@@ -225,10 +225,10 @@
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/40" />
           </motion.div>
 
-          {}
+          
           <Navbar />
 
-          {}
+          
           <div
             className="absolute inset-x-0 z-10 w-full items-center px-2 grid"
             style={{
@@ -266,7 +266,7 @@
             </div>
           </div>
 
-          {}
+          
           <div className="absolute bottom-12 left-10 md:left-10 z-20 max-w-sm">
             <div className="h-5 overflow-hidden mb-1">
               <AnimatePresence mode="wait">
@@ -299,7 +299,7 @@
             </motion.a>
           </div>
 
-          {}
+          
           <motion.div className="absolute right-6 md:right-10 bottom-14 z-20 flex flex-col items-center gap-2">
             <span className="text-[9px] tracking-[0.4em] uppercase text-white/25">
               Scroll

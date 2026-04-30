@@ -17,19 +17,19 @@ function Navbar() {
 
   return (
     <>
-      {}
+      
       <motion.div
         className="fixed top-0 left-0 right-0 flex justify-between items-center px-6 md:px-10 py-6 z-50 body-font bg-black/30 backdrop-blur-md border-b border-white/10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {}
+        
         <p className="text-[11px] 2xl:text-[15px] tracking-[0.4em] uppercase text-white/60">
           UDESH
         </p>
 
-        {}
+        
         <div className="hidden md:flex gap-10">
           {menuItems.map((item) => (
             <motion.a
@@ -44,9 +44,9 @@ function Navbar() {
           ))}
         </div>
 
-        {}
+        
         <div className="flex items-center gap-6">
-          {}
+          
           <motion.div
             className="hidden md:flex items-center gap-2"
             animate={{ opacity: [0.4, 1, 0.4] }}
@@ -62,7 +62,7 @@ function Navbar() {
             </span>
           </motion.div>
 
-          {}
+          
           <button
             onClick={() => setOpen(true)}
             className="md:hidden text-[11px] tracking-[0.3em] uppercase text-white/60"
@@ -72,11 +72,11 @@ function Navbar() {
         </div>
       </motion.div>
 
-      {}
+      
       <AnimatePresence>
         {open && (
           <>
-            {}
+            
             <motion.div
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
@@ -85,8 +85,8 @@ function Navbar() {
               onClick={() => setOpen(false)}
             />
 
-            {}
-           {}
+            
+           
 <motion.div
   className="fixed top-0 left-0 h-full w-full bg-[#0a0a0a] z-50 flex body-font"
   initial={{ x: "-100%" }}
@@ -94,9 +94,9 @@ function Navbar() {
   exit={{ x: "-100%" }}
   transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
 >
-  {}
+  
   <div className="relative flex flex-col justify-center px-10 w-1/2">
-    {}
+    
     <button
       onClick={() => setOpen(false)}
       className="absolute top-6 left-10 text-sm tracking-widest text-white/50"
@@ -121,7 +121,7 @@ function Navbar() {
       ))}
     </div>
 
-    {}
+    
     <motion.div
       className="absolute bottom-10 left-10 flex items-center gap-2"
       initial={{ opacity: 0 }}
@@ -139,7 +139,7 @@ function Navbar() {
     </motion.div>
   </div>
 
-  {}
+  
   <motion.div
     className="w-[1px] h-full bg-white/10"
     initial={{ scaleY: 0 }}
@@ -148,11 +148,11 @@ function Navbar() {
     style={{ originY: 0 }}
   />
 
-  {}
- {}
+  
+ 
 <div className="relative flex flex-col justify-between py-20 px-6 w-1/2 overflow-hidden">
 
-  {}
+  
   <motion.div
     className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
     initial={{ opacity: 0, scale: 0.8 }}
@@ -167,7 +167,7 @@ function Navbar() {
     </span>
   </motion.div>
 
-  {}
+  
   <motion.div
     className="flex items-center gap-2"
     initial={{ opacity: 0, y: -8 }}
@@ -178,7 +178,7 @@ function Navbar() {
     <span className="text-[8px] tracking-[0.5em] uppercase text-white/25">2026</span>
   </motion.div>
 
-  {}
+  
   <motion.div className="flex flex-col gap-4 z-10">
     {[
       { num: "Fresher", label: "Yrs Exp" },
@@ -197,7 +197,7 @@ function Navbar() {
     ))}
   </motion.div>
 
-  {}
+  
   <motion.div
     className="flex flex-col gap-2 z-10"
     initial={{ opacity: 0 }}

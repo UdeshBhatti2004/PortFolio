@@ -107,7 +107,7 @@ function SkillChip({ skill, delay = 0 }) {
       className="relative cursor-default"
       style={{ display: "inline-flex" }}
     >
-      {}
+      
       <motion.div
         className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/50"
         animate={{
@@ -118,7 +118,7 @@ function SkillChip({ skill, delay = 0 }) {
         transition={{ duration: 0.2 }}
       />
 
-      {}
+      
       <motion.div
         className="flex flex-col border px-4 py-1.5 relative overflow-hidden"
         animate={{
@@ -129,7 +129,7 @@ function SkillChip({ skill, delay = 0 }) {
         }}
         transition={{ duration: 0.2 }}
       >
-        {}
+        
         <div className="flex items-center gap-2.5">
           <motion.div
             className="w-1 h-1 rounded-full"
@@ -156,7 +156,7 @@ function SkillChip({ skill, delay = 0 }) {
           </span>
         </div>
 
-        {}
+        
         <motion.div
           initial={false}
           animate={
@@ -247,7 +247,7 @@ export default function Skills() {
       className="relative w-full bg-[#080808] text-white overflow-hidden"
       style={{ fontFamily: "var(--font-outfit)" }}
     >
-      {}
+      
       <motion.div
         className="absolute top-0 left-0 right-0 z-10 h-[1px]"
         style={{
@@ -261,7 +261,7 @@ export default function Skills() {
 
       <div className="w-full h-px bg-white/[0.06]" />
 
-      {}
+      
       <motion.div
         className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none"
         initial={{ opacity: 0, y: 40 }}
@@ -291,7 +291,7 @@ export default function Skills() {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}
       >
-        {}
+        
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-20">
           <div>
             <motion.div
