@@ -192,10 +192,6 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
         </span>
       </motion.div>
 
-      {/* ════════════════════════════════════════
-          CONTENT — scales up from 96% as
-          curtain lifts
-      ════════════════════════════════════════ */}
       <motion.div
   className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-12 sm:pb-16"
         initial={{ scale: 0.96, opacity: 0 }}
