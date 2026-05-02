@@ -127,18 +127,18 @@ export default function Footer() {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <span className="text-[10px] 2xl:text-[13px] tracking-[0.28em] uppercase text-white/14">
+          <span className="text-[10px] 2xl:text-[13px] tracking-[0.28em] uppercase text-white/30">
             (c) {year} Udesh Bhatti
           </span>
 
-          <span className="text-[10px] 2xl:text-[13px] tracking-[0.28em] uppercase text-white/18 sm:text-center">
+          <span className="text-[10px] 2xl:text-[13px] tracking-[0.28em] uppercase text-white/30 sm:text-center">
             Designed & developed by Udesh Bhatti
           </span>
 
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="justify-self-start text-[10px] 2xl:text-[13px] tracking-[0.34em] uppercase text-white/25 transition-colors hover:text-white/80 sm:justify-self-end"
+            className="justify-self-start text-[10px] 2xl:text-[13px] tracking-[0.34em] uppercase text-white/30 transition-colors hover:text-white/80 sm:justify-self-end"
           >
             Back at top ↑
           </button>

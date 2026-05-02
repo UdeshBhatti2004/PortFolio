@@ -216,7 +216,7 @@ function Navbar() {
         className="flex items-center justify-between border border-white/8 px-4 py-2.5 text-[9px] tracking-[0.35em] uppercase text-white/35 hover:border-white/30 hover:text-white/80 transition-all"
       >
         {s.label}
-        <span className="text-white/20">↗</span>
+        <span className="text-white/30">↗</span>
       </a>
     ))}
   </motion.div>

@@ -294,14 +294,14 @@ const handleSubmit = () => {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.45 }}
             >
-              <span className="text-[10px] tracking-[0.45em] uppercase text-white/20">05</span>
+              <span className="text-[10px] tracking-[0.45em] uppercase text-white/30">05</span>
               <motion.div
                 className="h-px bg-white/13"
                 initial={{ width: 0 }}
                 animate={isInView ? { width: 24 } : { width: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               />
-              <span className="text-[10px] tracking-[0.45em] uppercase text-white/20">Contact</span>
+              <span className="text-[10px] tracking-[0.45em] uppercase text-white/30">Contact</span>
             </motion.div>
 
             
@@ -363,7 +363,7 @@ const handleSubmit = () => {
 
             <div className="flex items-center gap-3 mb-6">
               <span
-                className="text-[10px] tracking-[0.44em] uppercase text-white/22"
+                className="text-[10px] tracking-[0.44em] uppercase text-white/30"
                 style={{ fontFamily: "var(--font-outfit)" }}
               >
                 Drop a message
@@ -413,7 +413,7 @@ const handleSubmit = () => {
               maxLength={500}
               extra={
                 <span
-                  className="text-[9px] transition-colors duration-200"
+                  className="text-[10px] transition-colors duration-200"
                   style={{
                     fontFamily: "var(--font-outfit)",
                     color: msgLen > 0 ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.13)",
@@ -458,7 +458,7 @@ const handleSubmit = () => {
                 </motion.button>
 
                 <span
-                  className="text-[9px] tracking-[0.2em] text-white/18 whitespace-nowrap"
+                  className="text-[9px] tracking-[0.2em] text-white/30 whitespace-nowrap"
                   style={{ fontFamily: "var(--font-outfit)" }}
                 >
                   {totalChars} chars
@@ -498,11 +498,11 @@ const handleSubmit = () => {
                 animate={{ scale: [1, 1.5, 1], opacity: [0.35, 0.75, 0.35] }}
                 transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
               />
-              <span className="text-[10px] tracking-[0.3em] uppercase text-white/22">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-white/30">
                 Available for new projects
               </span>
             </div>
-            <span className="text-[10px] tracking-[0.28em] uppercase text-white/12">
+            <span className="text-[10px] tracking-[0.28em] uppercase text-white/30">
               © 2026 · Crafted with intent
             </span>
           </div>

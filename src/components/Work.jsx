@@ -205,7 +205,7 @@ function ProjectRow({ project, i }) {
                   href={project.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[9px] tracking-[0.35em] uppercase text-white/30 hover:text-white/70 transition-colors duration-300 whitespace-nowrap"
+                  className="text-[10px] tracking-[0.35em] uppercase text-white/40 hover:text-white/70 transition-colors duration-300 whitespace-nowrap"
                   style={{ fontFamily: "var(--font-outfit)" }}
                 >
                   Live ↗
@@ -215,7 +215,7 @@ function ProjectRow({ project, i }) {
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
-                className="text-[9px] tracking-[0.35em] uppercase text-white/20 hover:text-white/50 transition-colors duration-300"
+                className="text-[10px] tracking-[0.35em] uppercase text-white/40 hover:text-white/70 transition-colors duration-300"
                 style={{ fontFamily: "var(--font-outfit)" }}
               >
                 Code ↗

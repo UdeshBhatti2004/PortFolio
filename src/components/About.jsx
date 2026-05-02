@@ -251,7 +251,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
 
             
             <FadeUp delay={0.40}>
-              <p className="mt-5 text-white/30 text-sm sm:text-[15px] 2xl:text-[20px] leading-[1.9] sm:w-full xl:max-w-[440px] 2xl:max-w-[600px]">
+              <p className="mt-5 text-white/50 text-sm sm:text-[15px] 2xl:text-[20px] leading-[1.9] sm:w-full xl:max-w-[440px] 2xl:max-w-[600px]">
                 I obsess over the details others skip — the micro-interaction
                 that makes a UI feel alive, the API response time that nobody
                 notices until it's slow, the loading state that turns
@@ -318,7 +318,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
             
             <div>
               <FadeUp delay={0.15}>
-                <p className="text-[10px] 2xl:text-[15px] tracking-[0.4em] uppercase text-white/20 mb-5">
+                <p className="text-[10px] 2xl:text-[15px] tracking-[0.4em] uppercase text-white/40 mb-5">
                   Experience
                 </p>
               </FadeUp>
@@ -344,11 +344,11 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
                             {exp.role}
                           </p>
                           <p className="text-white/35 text-xs 2xl:text-xl mt-0.5">{exp.company}</p>
-                          <p className="text-white/20 text-[10px] 2xl:text-[15px]  tracking-widest mt-1 uppercase">
+                          <p className="text-white/35 text-[10px] 2xl:text-[15px]  tracking-widest mt-1 uppercase">
                             {exp.detail}
                           </p>
                         </div>
-                        <span className="text-[10px] 2xl:text-[15px] tracking-[0.2em] text-white/20 whitespace-nowrap mt-0.5 flex-shrink-0">
+                        <span className="text-[10px] 2xl:text-[15px] tracking-[0.2em] text-white/30 whitespace-nowrap mt-0.5 flex-shrink-0">
                           {exp.period}
                         </span>
                       </div>
@@ -370,13 +370,13 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
                     whileHover={{ x: "100%" }}
                     transition={{ duration: 0.55 }}
                   />
-                  <span className="text-white/20 text-[10px] 2xl:text-[20px] tracking-[0.3em] uppercase whitespace-nowrap relative z-10">
+                  <span className="text-white/30 text-[10px] 2xl:text-[20px] tracking-[0.3em] uppercase whitespace-nowrap relative z-10">
                     Achievement
                   </span>
                   <span className="w-px h-3 bg-white/10 flex-shrink-0" />
                   <span className="text-white/55 text-[11px] 2xl:text-[18px] leading-snug relative z-10">
                     Runner-up — Ignite 2025 Hackathon
-                    <span className="text-white/22"> · Charusat University, Anand</span>
+                    <span className="text-white/30"> · Charusat University, Anand</span>
                   </span>
                 </motion.div>
               </FadeUp>
@@ -393,7 +393,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
                   animate={tagsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                   transition={{ duration: 0.5, delay: i * 0.07, ease: [0.76, 0, 0.24, 1] }}
                   whileHover={{ borderColor: "rgba(255,255,255,0.28)", color: "rgba(255,255,255,0.65)" }}
-                  className="text-[10px] 2xl:text-[15px] tracking-[0.3em] uppercase text-white/28 border border-white/[0.08] px-3 py-1.5 cursor-default transition-colors duration-300"
+                  className="text-[10px] 2xl:text-[15px] tracking-[0.3em] uppercase text-white/45 border border-white/[0.08] px-3 py-1.5 cursor-default transition-colors duration-300"
                 >
                   {tag}
                 </motion.span>
