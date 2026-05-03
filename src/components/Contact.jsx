@@ -121,7 +121,7 @@ function ChannelRow({ ch, delay }) {
         <motion.span
           className="text-[10px] tracking-[0.36em] uppercase"
           style={{ fontFamily: "var(--font-outfit)" }}
-          animate={{ color: hov ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0.38)" }}
+          animate={{ color: hov ? "rgba(255,255,255,0.88)" : "rgba(255,255,255,0.3)" }}
           transition={{ duration: 0.2 }}
         >
           {ch.label}
@@ -131,7 +131,7 @@ function ChannelRow({ ch, delay }) {
         <motion.span
           className="text-[11px] tracking-[0.04em]"
           style={{ fontFamily: "var(--font-outfit)" }}
-          animate={{ color: hov ? "rgba(255,255,255,0.42)" : "rgba(255,255,255,0.16)" }}
+          animate={{ color: hov ? "rgba(255,255,255,0.42)" : "rgba(255,255,255,0.42)" }}
           transition={{ duration: 0.2 }}
         >
           {ch.value}
@@ -160,9 +160,9 @@ function FormField({ label, as: Tag = "input", extra, onChange, ...props }) {
     <div className="relative mb-[18px]">
       <div className="flex items-center justify-between mb-[7px]">
         <motion.span
-          className="text-[9px] tracking-[0.4em] uppercase"
+          className="text-[11px] tracking-[0.4em] uppercase"
           style={{ fontFamily: "var(--font-outfit)" }}
-          animate={{ color: focused ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.2)" }}
+          animate={{ color: focused ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.50)" }}
           transition={{ duration: 0.2 }}
         >
           {label}
@@ -175,7 +175,7 @@ function FormField({ label, as: Tag = "input", extra, onChange, ...props }) {
           onChange={onChange}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          className="w-full bg-transparent text-white/75 placeholder-white/[0.14] py-1.5 pb-2.5 text-[13px] tracking-[0.04em] outline-none resize-none"
+          className="w-full bg-transparent text-white/75 placeholder-white/[0.14] placeholder:text-white/30 py-1.5 pb-2.5 text-[13px] tracking-[0.04em] outline-none resize-none"
           style={{
             fontFamily: "var(--font-outfit)",
             caretColor: "rgba(255,255,255,0.55)",
@@ -267,7 +267,7 @@ const handleSubmit = () => {
           style={{
             fontFamily: "var(--font-bebas)",
             fontSize: "clamp(90px, 20vw, 260px)",
-            color: "rgba(255,255,255,0.016)",
+            color: "rgba(255,255,255,0.100)",
             letterSpacing: "0.05em",
             lineHeight: 0.88,
             whiteSpace: "nowrap",
@@ -280,7 +280,7 @@ const handleSubmit = () => {
         </span>
       </div>
 
-      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <div className="relative z-10 w-full px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-16 sm:pb-24 mt-4">
 
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
@@ -353,17 +353,17 @@ const handleSubmit = () => {
             
             <div className="border-t border-white/[0.055]">
               {channels.map((ch, i) => (
-                <ChannelRow key={ch.label} ch={ch} delay={0.5 + i * 0.07} />
+                <ChannelRow key={ch.label} ch={ch} delay={0.5 + i * 0.07}  />
               ))}
             </div>
           </FadeUp>
 
           
-          <FadeUp delay={0.3} className="lg:pt-[280px]" >
+          <FadeUp delay={0.3} className="lg:pt-[280px] " >
 
             <div className="flex items-center gap-3 mb-6">
               <span
-                className="text-[10px] tracking-[0.44em] uppercase text-white/30"
+                className="text-[10px] tracking-[0.44em] uppercase text-white/40"
                 style={{ fontFamily: "var(--font-outfit)" }}
               >
                 Drop a message

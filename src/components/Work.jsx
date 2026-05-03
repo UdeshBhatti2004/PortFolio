@@ -167,7 +167,7 @@ function ProjectRow({ project, i }) {
               {project.tech.map((t, ti) => (
                 <motion.span
                   key={ti}
-                  className="text-[9px] tracking-[0.28em] uppercase text-white border border-white/[0.1] px-2.5 py-1"
+                  className="text-[10px] tracking-[0.28em] uppercase text-white border border-white/[0.1] px-2.5 py-1"
                   style={{ fontFamily: "var(--font-outfit)" }}
                   animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0.6 }}
                   transition={{ duration: 0.3, delay: ti * 0.04 }}
@@ -312,7 +312,7 @@ export default function Work() {
           style={{
             fontFamily: "var(--font-bebas)",
             fontSize: "clamp(100px, 22vw, 280px)",
-            color: "rgba(255,255,255,0.018)",
+            color: "rgba(255,255,255,0.100)",
             letterSpacing: "0.05em",
             lineHeight: 0.9,
             whiteSpace: "nowrap",
@@ -327,7 +327,7 @@ export default function Work() {
 
       
       <motion.div
-        className="relative z-10 px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-10"
+        className="relative z-10 px-5 sm:px-10 md:px-16 pt-24 sm:pt-32 pb-10 mt-6"
         initial={{ opacity: 0 }}
         animate={isRevealed ? { opacity: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.3 }}
@@ -588,7 +588,7 @@ export default function Work() {
         transition={{ duration: 0.6, delay: 0.5 }}
       >
         <div className="flex items-center justify-between flex-wrap gap-4">
-          <p className="text-[10px] tracking-[0.35em] uppercase text-white/15">
+          <p className="text-[10px] tracking-[0.35em] uppercase text-white/30">
             More on GitHub
           </p>
           <a

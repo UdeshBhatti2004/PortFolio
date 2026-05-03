@@ -272,7 +272,7 @@ export default function Skills() {
           style={{
             fontFamily: "var(--font-bebas)",
             fontSize: "clamp(100px, 22vw, 300px)",
-            color: "rgba(255,255,255,0.016)",
+            color: "rgba(255,255,255,0.100)",
             letterSpacing: "0.05em",
             lineHeight: 0.9,
             whiteSpace: "nowrap",
@@ -292,7 +292,7 @@ export default function Skills() {
         transition={{ duration: 0.8, delay: 0.15, ease: [0.76, 0, 0.24, 1] }}
       >
         
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-20">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-20 mt-6">
           <div>
             <motion.div
               className="flex items-center gap-4 mb-5"
@@ -365,7 +365,7 @@ export default function Skills() {
                 >
                   {s.val}
                 </span>
-                <span className="text-[10px] tracking-[0.3em] uppercase text-white/25">
+                <span className="text-[10px] tracking-[0.3em] uppercase text-white/35">
                   {s.label}
                 </span>
               </div>
@@ -403,7 +403,7 @@ export default function Skills() {
               </span>
             </div>
             <span
-              className="text-[10px] 2xl:text-[13px] tracking-[0.3em] uppercase text-white/15"
+              className="text-[10px] 2xl:text-[13px] tracking-[0.3em] uppercase text-white/40"
               style={{ fontFamily: "var(--font-outfit)" }}
             >
               v2026.04

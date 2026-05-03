@@ -179,7 +179,7 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
           style={{
             fontFamily: "var(--font-bebas)",
             fontSize: "clamp(100px, 22vw, 280px)",
-            color: "rgba(255,255,255,0.022)",
+            color: "rgba(255,255,255,0.100)",
             letterSpacing: "0.05em",
             lineHeight: 0.9,
             whiteSpace: "nowrap",
@@ -201,19 +201,19 @@ const watermarkY = useTransform(scrollYProgress, [0, 1], ["-60%", "60%"]);
 
         
         <motion.div
-          className="flex items-center gap-4 mb-12 sm:mb-16"
+          className="flex items-center gap-4 mb-12 sm:mb-16 mt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={isRevealed ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.76, 0, 0.24, 1] }}
         >
-          <span className="text-[10px] tracking-[0.45em] uppercase text-white/25">01</span>
+          <span className="text-[10px] tracking-[0.45em] uppercase text-white/30">01</span>
           <motion.div
-            className="h-px bg-white/15"
+            className="h-px bg-white/30"
             initial={{ width: 0 }}
             animate={isRevealed ? { width: 32 } : { width: 0 }}
             transition={{ duration: 0.7, delay: 0.75, ease: [0.76, 0, 0.24, 1] }}
           />
-          <span className="text-[10px] tracking-[0.45em] uppercase text-white/25">Who I Am</span>
+          <span className="text-[10px] tracking-[0.45em] uppercase text-white/30">Who I Am</span>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
